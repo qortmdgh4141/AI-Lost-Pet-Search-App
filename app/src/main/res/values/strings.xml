@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Proto_1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="news_a">Sample text1 </string>
+    <string name="news_b">Sample text2 </string>
+    <string name="news_c">Sample text3 </string>
+    <string name="news_d">Sample text4 </string>
+
+
+
+    <string name="head_1">Cute dog</string>
+    <string name="head_2">Lovely dog</string>
+    <string name="head_3">missing dog</string>
+    <string name="head_4">Dog is cute</string>
+
+
+</resources>
