@@ -23,16 +23,17 @@ Based on Computer Vision & GPS, a platform was established to track the location
   <img src="https://img.shields.io/badge/Numpy-013243?style=flat-square&logo=Numpy&logoColor=blue"/>
 </p>  
 <p>
+  <img src="https://img.shields.io/badge/PHP-222222?style=flat-square&logo=PHP&logoColor=777BB4"/>
+  <img src="https://img.shields.io/badge/MySQL-eeeeee?style=flat-square&logo=MySQL&logoColor=4479A1"/>
+  <img src="https://img.shields.io/badge/Apache-A81C7D?style=flat-square&logo=Apache&logoColor=D22128"/>
+  <img src="https://img.shields.io/badge/Apache Tomcat-999999?style=flat-square&logo=Apache Tomcat&logoColor=F8DC75"/>
+</p>
+<p>
   <img src="https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=Android&logoColor=white"/>
   <img src="https://img.shields.io/badge/Java-FF0000?style=flat-square&logo=Java&logoColor=white"/>
   <img src="https://img.shields.io/badge/XML-888888?style=flat-square&logo=Java&logoColor=white"/>
-  
-  <img src="https://img.shields.io/badge/PHP-222222?style=flat-square&logo=PHP&logoColor=777BB4"/>
-  <img src="https://img.shields.io/badge/MySQL-eeeeee?style=flat-square&logo=MySQL&logoColor=4479A1"/>
-  
-<p>
-<p>
-<p>
+</p>   
+ 
 
 #### Deep Learning Model
 <p>
