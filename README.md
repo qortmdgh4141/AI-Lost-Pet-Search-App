@@ -1,4 +1,4 @@
-# AI Lost Pet Search App
+# 🐕  AI Lost Pet Search App 
 
 Build a platform to track the location of dogs based on Computer Vision & GPS and organize a system for protecting abandoned dogs between individuals.
 
