@@ -72,7 +72,7 @@ def convert_coco_json_to_yolo_txt(output_path, json_file):
     # jpg 이미지 각각 맞게 annotation 정보를 뽑아와서 저장
     for image in tqdm(json_data["annotations"], desc="Annotation txt for each image"):
         img_id = 0
-        img_name = "frame_" + str(image["frame_number"]) + "_timeestamp_" + str(image["timestamp"])
+        img_name = "frame_" + str(image["frame_number"]) + "_timestamp_" + str(image["timestamp"])
         #img_width = image["width"]
         #img_height = image["height"]
 
