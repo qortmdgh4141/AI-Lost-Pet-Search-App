@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "155004474509",
+    "project_id": "finddog-6aac3",
+    "storage_bucket": "finddog-6aac3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155004474509:android:478398af0c7a25805afec4",
+        "android_client_info": {
+          "package_name": "com.park.proto_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "155004474509-9t0qb5368j6cfnvm8bpulimvc1dj95j0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.park.proto_1",
+            "certificate_hash": "9ab3227041ffa8e51390b50b28f15ee0044c4b38"
+          }
+        },
+        {
+          "client_id": "155004474509-4fihtqa2qr301p1kor64ac7ic42fhfr5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG0JzbaGFTfV1EG51LHMXVKFTG8bTJrj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "155004474509-4fihtqa2qr301p1kor64ac7ic42fhfr5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
