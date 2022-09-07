@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "155004474509",
-    "project_id": "finddog-6aac3",
-    "storage_bucket": "finddog-6aac3.appspot.com"
+    "project_number": "487836561740",
+    "project_id": "find-dog-25917",
+    "storage_bucket": "find-dog-25917.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:155004474509:android:478398af0c7a25805afec4",
+        "mobilesdk_app_id": "1:487836561740:android:f2b6141810e6edbee21fe9",
         "android_client_info": {
           "package_name": "com.park.proto_1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "155004474509-9t0qb5368j6cfnvm8bpulimvc1dj95j0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.park.proto_1",
-            "certificate_hash": "9ab3227041ffa8e51390b50b28f15ee0044c4b38"
-          }
-        },
-        {
-          "client_id": "155004474509-4fihtqa2qr301p1kor64ac7ic42fhfr5.apps.googleusercontent.com",
+          "client_id": "487836561740-432vp0gfr7scb1d0ci4qnhf5u6e3pnc9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCG0JzbaGFTfV1EG51LHMXVKFTG8bTJrj0"
+          "current_key": "AIzaSyAIMufUktIMbL7uGoLJytiN5rdT4ynRkQY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "155004474509-4fihtqa2qr301p1kor64ac7ic42fhfr5.apps.googleusercontent.com",
+              "client_id": "487836561740-432vp0gfr7scb1d0ci4qnhf5u6e3pnc9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
