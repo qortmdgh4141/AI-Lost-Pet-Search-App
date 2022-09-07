@@ -1,18 +1,13 @@
 package com.park.proto_1;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -29,6 +24,8 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.signUpButton).setOnClickListener(onClickListener);
+        findViewById(R.id.gotoLoginButton).setOnClickListener(onClickListener);
+
     }
 
     @Override
@@ -45,6 +42,9 @@ public class SignUpActivity extends AppCompatActivity {
             switch (view.getId()){
                 case R.id.signUpButton:
                     signUp();
+                    break;
+                case R.id.gotoLoginButton:
+                    startLoginActivity();
                     break;
             }
         }
@@ -77,10 +77,14 @@ public class SignUpActivity extends AppCompatActivity {
             startToast("이메일 또는 비밀번호를 확인해 주세요");
         }
 
-
     }
 
     private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void startLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
