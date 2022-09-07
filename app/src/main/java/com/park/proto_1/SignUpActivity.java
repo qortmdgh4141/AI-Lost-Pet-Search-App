@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,7 +45,6 @@ public class SignUpActivity extends AppCompatActivity {
             switch (view.getId()){
                 case R.id.signUpButton:
                     signUp();
-
                     break;
             }
         }
@@ -53,24 +53,34 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUp() {
         String email = ((EditText)findViewById(R.id.emailEditText)).getText().toString();
         String password = ((EditText)findViewById(R.id.passwordEditText)).getText().toString();
+        String passwordCheck = ((EditText)findViewById(R.id.passwordCheckEditText)).getText().toString();
 
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //UI
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+        if(email.length()>0 && password.length() > 0 && passwordCheck.length() > 0) {
+            if(password.equals(passwordCheck)) {
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this, task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                startToast("회원가입 완료");
 
-                            //UI
-                        }
-                    }
-                });
+                            } else {
+                                if(task.getException() != null) {
+                                    startToast(task.getException().toString());
+                                }
+                            }
+                        });
+            } else{
+                startToast("비밀번호가 일치하지 않습니다.");
+            }
+        } else {
+            startToast("이메일 또는 비밀번호를 확인해 주세요");
+        }
+
+
+    }
+
+    private void startToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }
