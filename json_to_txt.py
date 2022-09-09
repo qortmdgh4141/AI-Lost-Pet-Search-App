@@ -43,7 +43,7 @@ def convert_bbox_coco2yolo(img_width, img_height, bbox):
 
     return [x, y, w, h]
 
-# Label 폴더 없을 경우에만 생성
+#  Label 폴더 없을 경우에만 생성
 def make_folders(path="output"):
     if os.path.exists(path):
         shutils.rmtree(path)
