@@ -50,7 +50,7 @@ def make_folders(path="output"):
     os.makedirs(path)
     return path
 
-#  Label 폴더안에 필요한 정보만 json -> txt 형식으로 변환
+# Label 폴더안에 필요한 정보만 json -> txt 형식으로 변환
 def convert_coco_json_to_yolo_txt(output_path, json_file):
     #for i in file_list_py:
     with open(json_file, encoding="UTF-8") as f:
