@@ -66,8 +66,14 @@ def convert_coco_json_to_yolo_txt(output_path, json_file):
             img_height = json_data["metadata"]["height"]
             img_width  = json_data["metadata"]["width"]
             f.write(f"{category_name}\n")'''
+
+    # AI hub json 파일 어노테이션 정보 불일치함에따라 폴더명 일치하게 변경
     img_dir_name = json_data["file_video"]
-    img_dir_name = img_dir_name.replace('/','_')
+    if img_dir_name[0:4] != '2021':
+        img_dir_name = img_dir_name.replace('/', '_')
+    else :
+        img_dir_name = img_dir_name[9:]
+
     category = json_data["metadata"]["animal"]
     category_name = category["breed"]
     img_height = json_data["metadata"]["height"]
@@ -100,15 +106,25 @@ def convert_coco_json_to_yolo_txt(output_path, json_file):
         #img_width = image["width"]
         #img_height = image["height"]
 
-        anno_txt = os.path.join(output_path, img_dir_name + str(img_name) + ".txt")
-        #anno_txt = output_path + '/' + str(img_name) + ".txt"
 
-        with open(anno_txt, "w", encoding="UTF-8") as f:
+        # AI hub 라벨링 음수로 잘못 기입한 경우 잘못된 이미지 이름 리스트 저장
+        if float(image["bounding_box"]["x"]) < 0 or float(image["bounding_box"]["y"]) < 0 or float(image["bounding_box"]["width"]) < 0 or float(image["bounding_box"]["height"]) < 0:
+            img_remove.append(img_dir_name + str(img_name))
+
+        else:
+            anno_txt = os.path.join(output_path, img_dir_name + str(img_name) + ".txt")
+            with open(anno_txt, "w", encoding="UTF-8") as f:
             # for anno in anno_in_image:
                 category = img_id
                 bbox_COCO = [image["bounding_box"]["x"], image["bounding_box"]["y"], image["bounding_box"]["width"], image["bounding_box"]["height"]]
                 x, y, w, h = convert_bbox_coco2yolo(img_width, img_height, bbox_COCO)
-                f.write(f"{category} {x:.6f} {y:.6f} {w:.6f} {h:.6f}\n")
+
+                # 이미지의 가로세로 높이가 같을 경우 0.9999... 초기화
+                if float(f"{w:.10f}") >= 1:
+                    w = 0.9999999999
+                if float(f"{h:.15f}") >= 1:
+                    h = 0.9999999999
+                f.write(f"{category} {x:.10f} {y:.10f} {w:.10f} {h:.10f}\n")
 
 #make_folders("yolov5/output")
 ## 해당 경로에 있는 .json 파일명 리스트 가져오기
@@ -118,11 +134,16 @@ file_list_py = [file for file in file_list if file.endswith('.json')]
 
 print(len(file_list_py))
 
+# AI hub 라벨링 음수로 잘못 기입한 이미지 리스트
+img_remove = []
+
 for i in file_list_py :
     one_json_name = path + "/" + i
-    output = 'C:/Users/user/PycharmProjects/Intelligent_CCTV_Module_for_Port_Safety/yolov5/output'
+    output = 'C:/Users/user/PycharmProjects/Intelligent_CCTV_Module_for_Port_Safety/yolov5/data/valid/labels'
     print(one_json_name)
     convert_coco_json_to_yolo_txt(output, one_json_name)
 
-
+print("--------------------------------------------")
+for i in img_remove:
+    print(i)
 # convert_coco_json_to_yolo_txt("", "DOG_label/FEETUP/20201111_dog-feetup-000886.mp4.json")
