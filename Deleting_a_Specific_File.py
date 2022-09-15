@@ -97,5 +97,9 @@ def image_del_files(path, total_label_names):
 # image_path = 'C:/Users/user/PycharmProjects/Intelligent_CCTV_Module_for_Port_Safety/yolov5/data/valid/images/'
 # image_del_files(image_path, total_data_preprocessing_label_names)
 
-
+# 학습할때 gpu 캐쉬 비워줌
+import gc
+import torch
+gc.collect()
+torch.cuda.empty_cache()
 
