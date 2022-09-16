@@ -97,6 +97,28 @@ def image_del_files(path, total_label_names):
 # image_path = 'C:/Users/user/PycharmProjects/Intelligent_CCTV_Module_for_Port_Safety/yolov5/data/valid/images/'
 # image_del_files(image_path, total_data_preprocessing_label_names)
 
+# train_test_valid 각각 골고루 분포되었는지 확인
+'''import os
+dog_class_dic  = { '0': 0, '1' : 0, '2' : 0, '3' : 0, '4' : 0, '5' : 0, '6' : 0, '7' : 0, '8' : 0, '9' : 0, '10' : 0,
+                   '11' : 0, '12': 0, '13' : 0, '14' : 0, '15'  : 0, '16': 0, '17' : 0, '18' : 0, '19' : 0 }
+
+a = 0
+for filename in os.listdir("C:/Users/user/PycharmProjects/Intelligent_CCTV_Module_for_Port_Safety/yolov5/data/valid/labels"):
+    with open(os.path.join("C:/Users/user/PycharmProjects/Intelligent_CCTV_Module_for_Port_Safety/yolov5/data/valid/labels", filename)) as f:
+        num = f.readline().split(' ')[0]
+        dog_class_dic[num] += 1
+        a += 1
+        print(a)
+print("---------------------")
+for i in dog_class_dic:
+    print(f'{dog_class_dic[i]}')'''
+
+# 학습할때 gpu 캐쉬 비워줌
+'''import gc
+import torch
+gc.collect()
+torch.cuda.empty_cache()'''
+
 # 학습할때 gpu 캐쉬 비워줌
 import gc
 import torch
