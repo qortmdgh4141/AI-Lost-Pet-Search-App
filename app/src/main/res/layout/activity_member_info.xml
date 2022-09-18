@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:gravity="center"
-        android:text="로그인"
+        android:text="회원정보"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -21,42 +21,56 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:ems="10"
-            android:hint="이메일"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#9A9292" />
 
         <EditText
-            android:id="@+id/passwordEditText"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:ems="10"
-            android:hint="비밀번호"
-            android:inputType="textPassword"
+            android:hint="이름"
+            android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:padding="10dp"
             android:textColor="#000000"
-            android:textColorHint="#9A9292" />
+            android:textColorHint="#7E7878" />
 
-        <Button
-            android:id="@+id/loginButton"
+        <EditText
+            android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="로그인" />
+            android:ems="10"
+            android:hint="전화번호"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:textColor="#000000"
+            android:textColorHint="#7E7878" />
 
-        <Button
-            android:id="@+id/gotoPasswordResetButton"
+        <EditText
+            android:id="@+id/birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="비밀번호 재설정" />
+            android:ems="10"
+            android:hint="생년월일"
+            android:inputType="date"
+            android:minHeight="48dp"
+            android:textColor="#000000"
+            android:textColorHint="#7E7878" />
+
+        <EditText
+            android:id="@+id/postalAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="주소"
+            android:inputType="textPostalAddress"
+            android:minHeight="48dp"
+            android:textColor="#000000"
+            android:textColorHint="#7E7878" />
+
+        <Button
+            android:id="@+id/checkButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="확인" />
+
     </LinearLayout>
 </LinearLayout>
