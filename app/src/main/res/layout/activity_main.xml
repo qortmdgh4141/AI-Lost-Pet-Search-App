@@ -24,6 +24,12 @@
             android:background="@drawable/findog"
             android:backgroundTint="#ffffff"></ImageView>
 
+        <ImageButton
+            android:id="@+id/mapBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/maps" />
+
     </RelativeLayout>
 
     <Button

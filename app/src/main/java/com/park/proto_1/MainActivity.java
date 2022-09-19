@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -57,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         findViewById(R.id.logoutButton).setOnClickListener(onClickListener);
+
+        ImageButton mapBtn = (ImageButton) findViewById(R.id.mapBtn);
+        mapBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), GPSMapActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -75,4 +85,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, c);
         startActivity(intent);
     }
+
 }
