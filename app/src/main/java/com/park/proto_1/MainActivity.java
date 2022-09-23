@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if(user == null) {
-            startActivity(SignUpActivity.class);
+            mystartActivity(SignUpActivity.class);
         }else{
-            startActivity(CameraActivity.class);
+            mystartActivity(MemberInitActivity.class);
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference docRef = db.collection("users").document(user.getUid());
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             } else {
                                 Log.d(TAG, "No such document");
-                                startActivity(MemberInitActivity.class);
+                                mystartActivity(MemberInitActivity.class);
                             }
                         }
                     } else {
@@ -77,13 +77,13 @@ public class MainActivity extends AppCompatActivity {
             switch (view.getId()){
                 case R.id.logoutButton:
                     FirebaseAuth.getInstance().signOut();
-                    startActivity(SignUpActivity.class);
+                    mystartActivity(SignUpActivity.class);
                     break;
             }
         }
     };
 
-    private void startActivity(Class c) {
+    private void mystartActivity(Class c) {
         Intent intent = new Intent(this, c);
         startActivity(intent);
     }

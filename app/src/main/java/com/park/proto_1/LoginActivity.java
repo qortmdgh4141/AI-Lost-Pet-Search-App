@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 login();
                 break;
             case R.id.gotoPasswordResetButton:
-                startActivity(PasswordResetActivity.class);
+                mystartActivity(PasswordResetActivity.class);
                 break;
         }
     };
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 startToast("로그인 성공");
-                                startActivity(MainActivity.class);
+                                mystartActivity(MainActivity.class);
                                 finish();
                             } else {
                                 if(task.getException() != null){
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void startActivity(Class c) {
+    private void mystartActivity(Class c) {
         Intent intent = new Intent(this, c);
         intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

@@ -1,10 +1,15 @@
 package com.park.proto_1;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,15 +21,23 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.File;
+
 public class MemberInitActivity extends AppCompatActivity {
     private static final String TAG = "MemberInitActivity";
+    private ImageView profileImage;
+    private String profilePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_info);
 
+        profileImage = findViewById(R.id.profileImage);
+        profileImage.setOnClickListener(onClickListener);
+
         findViewById(R.id.checkButton).setOnClickListener(onClickListener);
+
     }
 
     @Override
@@ -33,11 +46,31 @@ public class MemberInitActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 0 : {
+                if(resultCode == Activity.RESULT_OK) {
+                    profilePath = data.getStringExtra("profilePath");
+                    Log.e("log", "profilePath "+profilePath);
+                    Bitmap bmp = BitmapFactory.decodeFile(profilePath);
+                    profileImage.setImageBitmap(bmp);
+                }
+                break;
+            }
+        }
+    }
+
     View.OnClickListener onClickListener = view -> {
         switch (view.getId()){
             case R.id.checkButton:
                 profileUpdate();
                 break;
+            case R.id.profileImage:
+                mystartActivity(CameraActivity.class);
+                break;
+
         }
     };
 
@@ -80,6 +113,11 @@ public class MemberInitActivity extends AppCompatActivity {
 
     private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void mystartActivity(Class c) {
+        Intent intent = new Intent(this, c);
+        startActivityForResult(intent, 0);
     }
 
 

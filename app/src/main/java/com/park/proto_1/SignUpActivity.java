@@ -42,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
                     signUp();
                     break;
                 case R.id.gotoLoginButton:
-                    startActivity(LoginActivity.class);
+                    mystartActivity(LoginActivity.class);
                     break;
             }
         }
@@ -60,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 startToast("회원가입 완료");
-                                startActivity(MainActivity.class);
+                                mystartActivity(MainActivity.class);
                             } else {
                                 if(task.getException() != null) {
                                     startToast(task.getException().toString());
@@ -79,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void startActivity(Class c) {
+    private void mystartActivity(Class c) {
         Intent intent = new Intent(this, c);
         intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
