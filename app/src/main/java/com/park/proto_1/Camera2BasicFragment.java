@@ -60,6 +60,12 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -182,6 +188,12 @@ public class Camera2BasicFragment extends Fragment
      */
     private Size mPreviewSize;
 
+
+
+    private int facingId = 0;
+
+    private boolean mAutoFocusSupported;
+
     /**
      * {@link CameraDevice.StateCallback} is called when {@link CameraDevice} changes its state.
      */
@@ -244,7 +256,7 @@ public class Camera2BasicFragment extends Fragment
 
         @Override
         public void onImageAvailable(ImageReader reader) {
-            mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile));
+            mBackgroundHandler.post(new ImageUploader(reader.acquireNextImage()));
         }
 
     };
@@ -415,7 +427,7 @@ public class Camera2BasicFragment extends Fragment
         }
     }
 
-    public static Fragment newInstance() {
+    public static Camera2BasicFragment newInstance() {
         return new Camera2BasicFragment();
     }
 
@@ -428,7 +440,7 @@ public class Camera2BasicFragment extends Fragment
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         view.findViewById(R.id.picture).setOnClickListener(this);
-        //view.findViewById(R.id.change).setOnClickListener(this);
+        view.findViewById(R.id.change).setOnClickListener(this);
         mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
     }
 
@@ -489,7 +501,7 @@ public class Camera2BasicFragment extends Fragment
      * @param height The height of available size for camera preview
      */
     @SuppressWarnings("SuspiciousNameCombination")
-    private void setUpCameraOutputs(int width, int height) {
+    private void setUpCameraOutputs(int width, int height, int facingId) {
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
@@ -497,9 +509,17 @@ public class Camera2BasicFragment extends Fragment
                 CameraCharacteristics characteristics
                         = manager.getCameraCharacteristics(cameraId);
 
-                // We don't use a front facing camera in this sample.
+                int[] afAvailableModes = characteristics.get(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES);
+
+                if (afAvailableModes.length == 0 || (afAvailableModes.length == 1
+                        && afAvailableModes[0] == CameraMetadata.CONTROL_AF_MODE_OFF)) {
+                    mAutoFocusSupported = false;
+                } else {
+                    mAutoFocusSupported = true;
+                }
+
                 Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
-                if (facing != null && facing == CameraCharacteristics.LENS_FACING_FRONT) {
+                if (facing != null && facing == facingId) {
                     continue;
                 }
 
@@ -606,7 +626,7 @@ public class Camera2BasicFragment extends Fragment
             requestCameraPermission();
             return;
         }
-        setUpCameraOutputs(width, height);
+        setUpCameraOutputs(width, height, facingId);
         configureTransform(width, height);
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
@@ -621,6 +641,7 @@ public class Camera2BasicFragment extends Fragment
             throw new RuntimeException("Interrupted while trying to lock camera opening.", e);
         }
     }
+
 
     /**
      * Closes the current {@link CameraDevice}.
@@ -767,7 +788,11 @@ public class Camera2BasicFragment extends Fragment
      * Initiate a still image capture.
      */
     private void takePicture() {
-        lockFocus();
+        if (mAutoFocusSupported) {
+            lockFocus();
+        } else {
+            captureStillPicture();
+        }
     }
 
     /**
@@ -888,8 +913,18 @@ public class Camera2BasicFragment extends Fragment
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.picture:
+            case R.id.picture: {
                 takePicture();
+                break;
+            }
+            case R.id.change:
+                if(facingId == CameraCharacteristics.LENS_FACING_FRONT) {
+                    facingId = CameraCharacteristics.LENS_FACING_BACK;
+                }else {
+                    facingId = CameraCharacteristics.LENS_FACING_FRONT;
+                }
+                closeCamera();
+                openCamera(mTextureView.getWidth(), mTextureView.getHeight());
                 break;
         }
     }
@@ -901,6 +936,50 @@ public class Camera2BasicFragment extends Fragment
         }
     }
 
+
+    /**
+     * Saves a JPEG {@link Image} into the specified {@link File}.
+     */
+    private static class ImageUploader implements Runnable {
+
+        /**
+         * The JPEG image
+         */
+        private final Image mImage;
+
+
+        ImageUploader(Image image) {
+            mImage = image;
+        }
+
+        @Override
+        public void run() {
+            ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
+            byte[] bytes = new byte[buffer.remaining()];
+            buffer.get(bytes);
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            StorageReference mountainImagesRef = storageRef.child("images/mountains.jpg");
+
+            UploadTask uploadTask = mountainImagesRef.putBytes(bytes);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                    Log.e("실패","실패");
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                    // ...
+                    Log.e("성공","성공");
+                }
+            });
+        }
+
+    }
     /**
      * Saves a JPEG {@link Image} into the specified {@link File}.
      */
