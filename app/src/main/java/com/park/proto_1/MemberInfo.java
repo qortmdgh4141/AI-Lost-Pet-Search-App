@@ -6,6 +6,15 @@ public class MemberInfo {
     private String phone;
     private String birthday;
     private String address;
+    private String photoUrl;
+
+    public MemberInfo(String name, String phone, String birthday, String address, String photoUrl){
+        this.name = name;
+        this.phone = phone;
+        this.birthday = birthday;
+        this.address = address;
+        this.photoUrl = photoUrl;
+    }
 
     public MemberInfo(String name, String phone, String birthday, String address){
         this.name = name;
@@ -44,6 +53,14 @@ public class MemberInfo {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhotoUrl() {
+        return this.photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }
 
