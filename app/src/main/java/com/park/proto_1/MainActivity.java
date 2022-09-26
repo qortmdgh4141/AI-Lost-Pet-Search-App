@@ -81,6 +81,7 @@ public class MainActivity extends BasicActivity {
                     mystartActivity(SignUpActivity.class);
                     break;
                 case R.id.floatingActionButton:
+                    mystartActivity(WritePostActivity.class);
 
                     break;
             }
