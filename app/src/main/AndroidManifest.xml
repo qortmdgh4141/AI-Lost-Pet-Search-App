@@ -65,6 +65,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".MemberInitActivity" />
         <activity android:name=".CameraActivity" />
+        <activity android:name=".GalleryActivity" />
 
     </application>
 

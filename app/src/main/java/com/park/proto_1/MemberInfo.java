@@ -62,5 +62,7 @@ public class MemberInfo {
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
+
+
 }
 

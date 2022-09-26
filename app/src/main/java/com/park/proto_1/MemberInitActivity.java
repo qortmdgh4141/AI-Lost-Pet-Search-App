@@ -1,7 +1,9 @@
 package com.park.proto_1;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -86,17 +90,43 @@ public class MemberInitActivity extends AppCompatActivity {
                 CardView cardView = findViewById(R.id.cardView);
                 if(cardView.getVisibility() == View.VISIBLE) {
                     cardView.setVisibility(View.GONE);
+                }else{
+                    cardView.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.pictureBtn:
                 mystartActivity(CameraActivity.class);
                 break;
             case R.id.gallery:
-                //mystartActivity(CameraActivity.class);
+                if(ContextCompat.checkSelfPermission(MemberInitActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+                    if(ActivityCompat.shouldShowRequestPermissionRationale(MemberInitActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+                        ActivityCompat.requestPermissions(MemberInitActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
+                    }
+                    else{
+                        ActivityCompat.requestPermissions(MemberInitActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
+                        startToast("권한을 허용해 주세요");
+                    }
+                }else{
+                    mystartActivity(GalleryActivity.class);
+                }
                 break;
 
         }
     };
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mystartActivity(GalleryActivity.class);
+                } else {
+                    startToast("권한을 허용해 주세요");
+                }
+        }
+    }
+
 
     private void profileUpdate() {
         String name = ((EditText)findViewById(R.id.name)).getText().toString();
