@@ -32,6 +32,7 @@ public class MainActivity extends BasicActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //
 
         if(user == null) {
             mystartActivity(SignUpActivity.class);
