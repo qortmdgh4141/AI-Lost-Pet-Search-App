@@ -68,6 +68,7 @@
         <activity android:name=".GalleryActivity" />
         <activity android:name=".BasicActivity" />
         <activity android:name=".WritePostActivity" />
+        <activity android:name=".Api_main" />
 
 
 

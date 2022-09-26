@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -61,12 +62,23 @@ public class MainActivity extends BasicActivity {
 
         findViewById(R.id.logoutButton).setOnClickListener(onClickListener);
         findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
+        findViewById(R.id.button).setOnClickListener(onClickListener);
 
         ImageButton mapBtn = (ImageButton) findViewById(R.id.mapBtn);
         mapBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), GPSMapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button Btn = (Button) findViewById(R.id.button);
+
+        Btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), Api_main.class);
                 startActivity(intent);
             }
         });
