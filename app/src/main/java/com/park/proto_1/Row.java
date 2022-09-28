@@ -8,6 +8,7 @@ public class Row {
     @SerializedName("SIGUN_CD")
     @Expose
     private String sigunCd;
+
     @SerializedName("SIGUN_NM")
     @Expose
     private String sigunNm;
@@ -34,57 +35,75 @@ public class Row {
     private String ageInfo;
     @SerializedName("BDWGH_INFO")
     @Expose
+
     private String bdwghInfo;
     @SerializedName("PBLANC_IDNTFY_NO")
     @Expose
+
     private String pblancIdntfyNo;
     @SerializedName("PBLANC_BEGIN_DE")
     @Expose
+
     private String pblancBeginDe;
     @SerializedName("PBLANC_END_DE")
     @Expose
+
     private String pblancEndDe;
     @SerializedName("IMAGE_COURS")
     @Expose
+
     private String imageCours;
     @SerializedName("STATE_NM")
     @Expose
+
     private String stateNm;
     @SerializedName("SEX_NM")
     @Expose
+
     private String sexNm;
     @SerializedName("NEUT_YN")
     @Expose
+
     private String neutYn;
     @SerializedName("SFETR_INFO")
     @Expose
+
     private String sfetrInfo;
     @SerializedName("SHTER_NM")
     @Expose
+
     private String shterNm;
     @SerializedName("SHTER_TELNO")
     @Expose
+
     private String shterTelno;
     @SerializedName("PROTECT_PLC")
     @Expose
+
     private String protectPlc;
     @SerializedName("JURISD_INST_NM")
     @Expose
+
     private String jurisdInstNm;
     @SerializedName("CHRGPSN_NM")
     @Expose
+
     private Object chrgpsnNm;
     @SerializedName("CHRGPSN_CONTCT_NO")
     @Expose
+
     private Object chrgpsnContctNo;
     @SerializedName("PARTCLR_MATR")
     @Expose
+
     private Object partclrMatr;
     @SerializedName("REFINE_LOTNO_ADDR")
     @Expose
+
     private Object refineLotnoAddr;
     @SerializedName("REFINE_ROADNM_ADDR")
     @Expose
+
     private Object refineRoadnmAddr;
     @SerializedName("REFINE_ZIP_CD")
     @Expose

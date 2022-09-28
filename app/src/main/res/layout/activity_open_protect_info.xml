@@ -22,14 +22,47 @@
                     android:layout_alignParentLeft="true" />
 
                 <TextView
-                    android:id="@+id/DogInfo"
+                    android:id="@+id/SIGUN_NM"
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/ApiImageView"
                     android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@+id/ApiImageView"
+                    android:lines="1"
+                    android:paddingTop="0dp"
+                    android:text="title" />
+
+                <TextView
+                    android:id="@+id/SPECIES_NM"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/ApiImageView"
+                    android:lines="1"
                     android:paddingTop="20dp"
-                    android:lines="2"
+                    android:text="title" />
+
+                <TextView
+                    android:id="@+id/COLOR_NM"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_toRightOf="@+id/ApiImageView"
+                    android:lines="1"
+                    android:paddingTop="40dp"
+                    android:text="title" />
+
+                <TextView
+                    android:id="@+id/SHTER_NM"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/ApiImageView"
+                    android:lines="1"
+                    android:paddingTop="60dp"
                     android:text="title" />
 
         </RelativeLayout>

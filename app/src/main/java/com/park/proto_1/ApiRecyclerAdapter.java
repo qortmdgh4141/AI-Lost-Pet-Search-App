@@ -17,59 +17,69 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-public class ApiRecyclerAdapter extends RecyclerView.Adapter<ApiRecyclerAdapter.CustomViewHolder>{
+public class ApiRecyclerAdapter extends RecyclerView.Adapter<ApiRecyclerAdapter.ItemViewHolder>{
 
-    private List<AbdmAnimalProtect> dataList;
-    private Context context;
-    private List<Row> rowlist;
-    public ApiRecyclerAdapter(Context context, List<AbdmAnimalProtect> dataList) {
-        this.context = context;
-        this.dataList = dataList;
-    }
+//    private List<AbdmAnimalProtect> dataList;
+//    private Context context;
 
-    class CustomViewHolder extends RecyclerView.ViewHolder {
+    ArrayList<Row> rowList = new  ArrayList<Row>();
 
-        public final View mView;
 
-        TextView txtTitle;
-        private ImageView coverImage;
 
-        CustomViewHolder(View itemView) {
-            super(itemView);
-            mView = itemView;
 
-            txtTitle = mView.findViewById(R.id.DogInfo);
-            coverImage = mView.findViewById(R.id.ApiImageView);
-        }
-    }
 
     @Override
-    public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ApiRecyclerAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.activity_open_protect_info, parent, false);
-        return new CustomViewHolder(view);
+        return new ItemViewHolder(view);
     }
-
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, int position) {
-
-        // 타이틀
-        holder.txtTitle.setText(dataList.get(position).getRow().toString());
-        Log.i("타이트트ㅡ으ㅡ트", dataList.toString());
-//        // 이미지
-        Glide.with(context)
-                .load(rowlist.get(position).getThumbImageCours())
-                .skipMemoryCache(true)
-                .circleCrop()
-                .skipMemoryCache(true)
-                .error(rowlist.get(position).getThumbImageCours())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(holder.coverImage);
+    public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int position) {
+        itemViewHolder.onBind(rowList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return rowList.size();
+    }
+
+    public void addItem(Row row) {
+        rowList.add(row);
+    }
+
+
+    class ItemViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView textView1;
+        private TextView textView2;
+        private TextView textView3;
+        private TextView textView4;
+        private ImageView imageView1;
+
+        private String imgURL;
+
+        public ItemViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            textView1 = itemView.findViewById(R.id.SIGUN_NM);
+            textView2 = itemView.findViewById(R.id.SPECIES_NM);
+            textView3 = itemView.findViewById(R.id.COLOR_NM);
+            textView4 = itemView.findViewById(R.id.SHTER_NM);
+            imageView1 = itemView.findViewById(R.id.ApiImageView);
+        }
+
+        // 실제 데이터를 1개의 객체마다 1:1 대응하여 바인딩시킨다.
+        void onBind(Row row) {
+            textView1.setText(row.getSigunNm());
+            textView2.setText(row.getSpeciesNm());
+            textView3.setText(row.getColorNm());
+            textView4.setText(row.getShterNm());
+            String imgURL = row.getThumbImageCours();
+
+            // Glide URL로 이미지 불러오기 오픈소스
+            Glide.with(itemView).load(imgURL).into(imageView1);
+        }
     }
 
 

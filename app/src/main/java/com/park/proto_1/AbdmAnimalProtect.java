@@ -8,11 +8,12 @@ import java.util.List;
 public class AbdmAnimalProtect {
 
     @SerializedName("head")
-    @Expose
-    private List<Head> head = null;
+
+    public List<Head> head;
+
     @SerializedName("row")
-    @Expose
-    private List<Row> row;
+
+    public List<Row> row;
 
     public List<Head> getHead() {
         return head;
@@ -30,9 +31,7 @@ public class AbdmAnimalProtect {
         this.row = row;
     }
 
-    @Override
-    public String toString(){
-        return "AbdmAnimalProtect{" + "row=" + row + "}";
-    }
+
 
 }
+
