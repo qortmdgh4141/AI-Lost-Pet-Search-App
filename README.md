@@ -1,4 +1,5 @@
 # 🐕  AI Lost Pet Search App 
+⚠️ The project is still in progress... --> planned to be completed around October 
 
 Build a platform to track the location of dogs based on Computer Vision & GPS and organize a system for protecting abandoned dogs between individuals.
 
