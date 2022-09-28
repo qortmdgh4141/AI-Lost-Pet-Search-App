@@ -123,7 +123,7 @@ public class WritePostActivity extends BasicActivity{
                     String text = ((EditText) view).getText().toString();
                     if(text.length() > 0){
                         contentsList.add(text);
-                    }
+                    }//
                 }else{
                     contentsList.add(pathList.get(pathCount));
                     final StorageReference mountainImagesRef = storageRef.child("users/"+user.getUid()+"/"+pathCount+".jpg");
