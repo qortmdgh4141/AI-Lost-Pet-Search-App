@@ -15,7 +15,7 @@
         <entry key="..\:/and_workspace/AI_Lost_Pet_Search_App/app/src/main/res/layout/activity_member_info.xml" value="0.25" />
         <entry key="..\:/and_workspace/AI_Lost_Pet_Search_App/app/src/main/res/layout/activity_password_reset.xml" value="0.3619791666666667" />
         <entry key="..\:/and_workspace/AI_Lost_Pet_Search_App/app/src/main/res/layout/activity_sign_up.xml" value="0.3609375" />
-        <entry key="..\:/and_workspace/AI_Lost_Pet_Search_App/app/src/main/res/layout/activity_write_post.xml" value="0.3619791666666667" />
+        <entry key="..\:/and_workspace/AI_Lost_Pet_Search_App/app/src/main/res/layout/activity_write_post.xml" value="0.25729166666666664" />
         <entry key="..\:/and_workspace/AI_Lost_Pet_Search_App/app/src/main/res/layout/fragment_add.xml" value="0.3619791666666667" />
         <entry key="..\:/and_workspace/AI_Lost_Pet_Search_App/app/src/main/res/layout/fragment_arc.xml" value="0.3619791666666667" />
         <entry key="..\:/and_workspace/AI_Lost_Pet_Search_App/app/src/main/res/layout/fragment_camera2_basic.xml" value="0.33" />
@@ -32,6 +32,8 @@
         <entry key="..\:/and_workspace/Proto_1/app/src/main/res/layout/item_list.xml" value="0.3619791666666667" />
         <entry key="..\:/and_workspace/Proto_1/app/src/main/res/menu/bottom_menu.xml" value="0.3619791666666667" />
         <entry key="..\:/and_workspace/Proto_1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3355" />
+        <entry key="..\:/workspace_android/AI_Lost_Pet_Search_App/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/workspace_android/AI_Lost_Pet_Search_App/app/src/main/res/layout/api_main.xml" value="0.1" />
       </map>
     </option>
   </component>

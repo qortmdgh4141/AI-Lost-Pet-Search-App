@@ -35,9 +35,8 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="보호소정보"
             android:layout_marginLeft="300dp"
-            />
+            android:text="보호소정보" />
 
     </RelativeLayout>
 

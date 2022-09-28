@@ -1,69 +1,76 @@
 package com.park.proto_1;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ApiRecyclerAdapter extends RecyclerView.Adapter<ApiRecyclerAdapter.ViewHolder>{
-    private ArrayList<ApiData> mApiData = new ArrayList<>();
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+public class ApiRecyclerAdapter extends RecyclerView.Adapter<ApiRecyclerAdapter.CustomViewHolder>{
 
-    // 아이템 뷰를 저장하는 viewholder 클래스
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    private List<AbdmAnimalProtect> dataList;
+    private Context context;
+    private List<Row> rowlist;
+    public ApiRecyclerAdapter(Context context, List<AbdmAnimalProtect> dataList) {
+        this.context = context;
+        this.dataList = dataList;
+    }
 
-        TextView ApiTextView;
+    class CustomViewHolder extends RecyclerView.ViewHolder {
 
+        public final View mView;
 
-        public ViewHolder(@NonNull View itemView) {
+        TextView txtTitle;
+        private ImageView coverImage;
+
+        CustomViewHolder(View itemView) {
             super(itemView);
+            mView = itemView;
 
-            ApiTextView = itemView.findViewById(R.id.ApiTextView);
-
-
-        }
-
-        void onBind(ApiData data1) {
-            ApiTextView.setText(data1.getApiDogInfo());
-
+            txtTitle = mView.findViewById(R.id.DogInfo);
+            coverImage = mView.findViewById(R.id.ApiImageView);
         }
     }
 
-    // 아이템 뷰를 위한 뷰홀더 객체를 생성하여 return
-    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View view = inflater.inflate(R.layout.activity_open_protect_info, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-
-        return viewHolder;
+    public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.activity_open_protect_info, parent, false);
+        return new CustomViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBind(mApiData.get(position));
+    public void onBindViewHolder(CustomViewHolder holder, int position) {
+
+        // 타이틀
+        holder.txtTitle.setText(dataList.get(position).getRow().toString());
+        Log.i("타이트트ㅡ으ㅡ트", dataList.toString());
+//        // 이미지
+        Glide.with(context)
+                .load(rowlist.get(position).getThumbImageCours())
+                .skipMemoryCache(true)
+                .circleCrop()
+                .skipMemoryCache(true)
+                .error(rowlist.get(position).getThumbImageCours())
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(holder.coverImage);
     }
 
-
-
-
-    // 사이즈
     @Override
     public int getItemCount() {
-        return mApiData.size();
+        return dataList.size();
     }
 
-    // data 모델의 객체들을 list에 저장
-    public void setmovieList(ArrayList<ApiData> list) {
-        this.mApiData = list;
-        notifyDataSetChanged();
-    }
+
 }

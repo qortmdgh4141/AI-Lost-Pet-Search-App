@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_friend"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    card_view:cardUseCompatPadding="true"
     >
 
-
-
-        <ImageView
-            android:id="@+id/ApiImageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
-<!--            android:background="@drawable/background_gray_stroke_radius_16"-->
-<!--            android:padding="8dp"-->
-
-
-        <TextView
-            android:id="@+id/ApiTextView"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:textColor="@color/black"
-            android:textSize="15dp"
-             />
+            >
 
+                <ImageView
+                    android:id="@+id/ApiImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="centerCrop"
+                    android:layout_alignParentLeft="true" />
 
+                <TextView
+                    android:id="@+id/DogInfo"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/ApiImageView"
+                    android:layout_marginLeft="16dp"
+                    android:paddingTop="20dp"
+                    android:lines="2"
+                    android:text="title" />
 
+        </RelativeLayout>
 
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>

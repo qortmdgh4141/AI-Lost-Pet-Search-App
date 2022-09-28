@@ -3,124 +3,73 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 
 public class Api_main extends AppCompatActivity{
-    private String address = "https://openapi.gg.go.kr/AbdmAnimalProtect?KEY=25af84057280489d90e4a25dd9138611&pIndex=1&Type=json&pSize=50&SIGUN_CD=41590&SPECIES_NM=[개]";
+    private static final String TAG = "TestActivity-레트로핏";
 
-
-    private Button Hasung_btn;
-    private RecyclerView recyclerview;
-    private ApiRecyclerAdapter adapter = new ApiRecyclerAdapter();    // adapter 생성
-
-    private ArrayList<ApiData> Apilist = new ArrayList<>();
-
-
-
-
+    // 어답터
+    private ApiRecyclerAdapter adapter;
+    // 리사이클러뷰
+    private RecyclerView recyclerView;
+    // 진행바
+    ProgressDialog progressDoalog;
+    //private List<ApiData> ApiList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.api_main);
 
-        Hasung_btn = findViewById(R.id.Hasung_btn);
-        recyclerview = findViewById(R.id.recyclerview);
+        // 진행중바
+        progressDoalog = new ProgressDialog(Api_main.this);
+        progressDoalog.setMessage("Loading....");
+        progressDoalog.show();
 
-        // RecyclerView
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerview.setLayoutManager(linearLayoutManager);
-        // recyclerview에 adapter 적용
-        recyclerview.setAdapter(adapter);
+        // 레트로핏 인스턴스 생성을 해줍니다.
+        // enqueue로 비동기 통신을 싱행합니다.
+        RetrofitInterface service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitInterface.class);
+        Call<List<AbdmAnimalProtect>> call = service.getAllData();
+        Log.i("제발나와", service.getAllData().toString());
 
-
-        // 데이터 불러오기 버튼 클릭
-        Hasung_btn.setOnClickListener(new View.OnClickListener() {
+        //통신완료후 이벤트 처리를 위한 콜백 리스너 등록
+        call.enqueue(new Callback<List<AbdmAnimalProtect>>() {
+            // 정상으로 통신 성공시
             @Override
-            public void onClick(View v) {
-
-
-                String urlAddress = address;
-
-                new Thread(){
-                    @Override
-                    public void run() {
-                        try {
-                            URL url = new URL(urlAddress);
-
-                            InputStream is = url.openStream();
-                            InputStreamReader isr = new InputStreamReader(is);
-                            BufferedReader reader = new BufferedReader(isr);
-
-                            StringBuffer buffer = new StringBuffer();
-                            String line = reader.readLine();
-                            while (line != null) {
-                                buffer.append(line + "\n");
-                                line = reader.readLine();
-                            }
-                            String jsonData = buffer.toString();
-
-                            // jsonData를 먼저 JSONObject 형태로 바꾼다.
-                            JSONObject obj = new JSONObject(jsonData);
-
-                            // obj의 "boxOfficeResult"의 JSONObject를 추출
-                            String AbdmAnimalProtect = obj.getString("AbdmAnimalProtect");
-                            Log.i("제발아러자ㅓㅈ아러", AbdmAnimalProtect);
-                            //JSONObject AbdmAnimalProtect = (JSONObject)obj.optJSONObject("SPECIES_NM");
-
-                            // boxOfficeResult의 JSONObject에서 "dailyBoxOfficeList"의 JSONArray 추출
-
-                            JSONArray Info = new JSONArray(AbdmAnimalProtect);
-                            Log.i("제발아러자ㅓㅈ아러", Info.toString());
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-
-                                        // dailyBoxOfficeList의 length만큼 for문 반복
-                                        for (int i = 0; i < Info.length(); i++) {
-                                            // dailyBoxOfficeList를 각 JSONObject 형태로 객체를 생성한다.
-                                            JSONObject temp = Info.getJSONObject(i);
-                                            String SPECIES_NM = temp.optString("SIGUN_NM");
-                                            // list의 json 값들을 넣는다.
-                                            Apilist.add(new ApiData(SPECIES_NM));
-                                        }
-                                        // adapter에 적용
-                                        adapter.setmovieList(Apilist);
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-
-
-                        } catch (MalformedURLException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }.start();
+            public void onResponse(Call<List<AbdmAnimalProtect>> call, Response<List<AbdmAnimalProtect>> response) {
+                progressDoalog.dismiss();
+                generateDataList(response.body());
+                Log.i("wefkhwehflkwwwww", response.body().toString());
+                adapter.notifyDataSetChanged();
+            }
+            // 통신 실패시(예외발생, 인터넷끊김 등의 이유)
+            @Override
+            public void onFailure(Call<List<AbdmAnimalProtect>> call, Throwable t) {
+                progressDoalog.dismiss();
+                Log.i("dslfkjhsdlkifhjsdlkf", call.toString());
+                Toast.makeText(Api_main.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+
+    // 리사이클러뷰
+    private void generateDataList(List<AbdmAnimalProtect> ApiList) {
+        recyclerView = findViewById(R.id.Apirecyclerview);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        adapter = new ApiRecyclerAdapter(this, ApiList);
+        recyclerView.setAdapter(adapter);
+
+    }
+
 }
