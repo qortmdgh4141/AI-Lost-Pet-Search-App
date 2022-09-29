@@ -65,6 +65,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="확인" />
+            <TextView
+                android:id="@+id/point"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="포인트: "
+                android:textSize="15dp"
+                android:textColor="@color/teal_200"
+                android:textStyle="bold" />
         </LinearLayout>
 
 

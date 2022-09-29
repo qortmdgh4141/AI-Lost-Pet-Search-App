@@ -93,6 +93,15 @@
                 android:layout_height="wrap_content"
                 android:text="확인" />
 
+            <TextView
+                android:id="@+id/point"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center_vertical"
+                android:text="회원가입시 포인트: 5000 point"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 

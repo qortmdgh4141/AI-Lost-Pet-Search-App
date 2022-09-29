@@ -34,7 +34,7 @@ public class Api_main extends AppCompatActivity{
     private RecyclerView recyclerView;
 
     private Spinner spinner;
-    private String Hasung = "HasungData.json";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

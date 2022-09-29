@@ -4,18 +4,16 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -24,7 +22,6 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -133,7 +130,7 @@ public class MemberInitActivity extends BasicActivity {
         String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
         String birthday = ((EditText)findViewById(R.id.birthday)).getText().toString();
         String address = ((EditText)findViewById(R.id.postalAddress)).getText().toString();
-
+        int point = 5000;
         if(name.length() > 0 && phone.length() > 9 && birthday.length() > 5 && address.length() > 0) {
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
@@ -141,7 +138,7 @@ public class MemberInitActivity extends BasicActivity {
             final StorageReference mountainImagesRef = storageRef.child("users/"+user.getUid()+"/profileImage.jpg");
 
             if(profilePath == null) {
-                MemberInfo memberInfo = new MemberInfo(name, phone, birthday, address);
+                MemberInfo memberInfo = new MemberInfo(name, phone, birthday, address, point);
                 uploader(memberInfo);
             }else{
                 try {
@@ -162,7 +159,7 @@ public class MemberInitActivity extends BasicActivity {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
 
-                                MemberInfo memberInfo = new MemberInfo(name, phone, birthday, address, downloadUri.toString());
+                                MemberInfo memberInfo = new MemberInfo(name, phone, birthday, address, downloadUri.toString(), point);
                                 uploader(memberInfo);
                             } else {
                                 startToast("회원정보를 전송실패.");

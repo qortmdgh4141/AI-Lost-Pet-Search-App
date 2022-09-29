@@ -7,20 +7,22 @@ public class MemberInfo {
     private String birthday;
     private String address;
     private String photoUrl;
-
-    public MemberInfo(String name, String phone, String birthday, String address, String photoUrl){
+    private Integer point;
+    public MemberInfo(String name, String phone, String birthday, String address, String photoUrl, Integer point){
         this.name = name;
         this.phone = phone;
         this.birthday = birthday;
         this.address = address;
         this.photoUrl = photoUrl;
+        this.point = point;
     }
 
-    public MemberInfo(String name, String phone, String birthday, String address){
-        this.name = name;
-        this.phone = phone;
-        this.birthday = birthday;
-        this.address = address;
+    public MemberInfo(String name, String phone, String birthday, String address, int point){
+        this.name = this.name;
+        this.phone = this.phone;
+        this.birthday = this.birthday;
+        this.address = this.address;
+        this.point = this.point;
     }
 
     public String getName() {
@@ -63,6 +65,13 @@ public class MemberInfo {
         this.photoUrl = photoUrl;
     }
 
+    public Integer getPoint() {
+        return this.point;
+    }
+
+    public void setPoint(Integer point) {
+        this.point = point;
+    }
 
 }
 

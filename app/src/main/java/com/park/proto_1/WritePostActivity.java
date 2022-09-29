@@ -11,12 +11,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +24,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
@@ -44,6 +46,7 @@ public class WritePostActivity extends BasicActivity{
     private LinearLayout parent;
     private int pathCount;
     private int  okCount;
+    private TextView pointText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,9 @@ public class WritePostActivity extends BasicActivity{
         findViewById(R.id.shot).setOnClickListener(onClickListener);
         findViewById(R.id.video).setOnClickListener(onClickListener);
 
+        pointText = findViewById(R.id.point);
+        PlusPoint();
+        NowPoint();
 
     }
 
@@ -154,7 +160,8 @@ public class WritePostActivity extends BasicActivity{
                                         if(pathList.size() == okCount){
                                             //완료
                                             WriteInfo writeInfo = new WriteInfo(title, contentsList, user.getUid(), new Date());
-                                            startToast("게시물이 등록되었습니다.");
+                                            PlusPoint();
+                                            startToast("게시물이 등록되었습니다. 500point 충전되었습니다.");
                                             dbuploader(writeInfo);
                                         }
                                     }
@@ -199,4 +206,34 @@ public class WritePostActivity extends BasicActivity{
         intent.putExtra("media",media);
         startActivityForResult(intent, 0);
     }
+
+    private void NowPoint(){
+        FirebaseFirestore pointDb = FirebaseFirestore.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        DocumentReference DR = pointDb.collection("users").document(user.getUid());
+        DR.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    Object point = documentSnapshot.getData().get("point");
+                    pointText.setText("잔여 포인트: " + point.toString() + "point");
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(TAG,"Faild", e);
+            }
+        });
+    }
+    private void PlusPoint(){
+        FirebaseFirestore pointDb = FirebaseFirestore.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        DocumentReference DR = pointDb.collection("users").document(user.getUid());
+        DR.update("point", FieldValue.increment(500));
+    }
+
 }
