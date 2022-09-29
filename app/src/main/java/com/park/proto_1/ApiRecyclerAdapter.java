@@ -48,6 +48,9 @@ public class ApiRecyclerAdapter extends RecyclerView.Adapter<ApiRecyclerAdapter.
         rowList.add(row);
     }
 
+    public void clear(){
+        rowList.clear();
+    }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
