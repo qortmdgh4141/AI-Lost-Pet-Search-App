@@ -7,12 +7,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -36,6 +40,25 @@ public class MainActivity extends BasicActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //네비게이션바 이벤트 HT
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.main);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                bottomNavigationView.postDelayed(() -> {
+                    int itemId = item.getItemId();
+                    if (itemId == R.id.main) {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    } else if (itemId == R.id.api) {
+                        startActivity(new Intent(getApplicationContext(), Api_main.class));
+                    }
+                    finish();
+                }, 100);
+                return true;
+            };
+        });
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -66,6 +89,9 @@ public class MainActivity extends BasicActivity {
         }
 
         recyclerView = findViewById(R.id.recyclerView1);
+        FloatingActionButton floatingActionButton;
+        floatingActionButton = findViewById(R.id.floatingActionButton);
+        floatingActionButton.bringToFront();
         findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
         findViewById(R.id.button).setOnClickListener(onClickListener);
 

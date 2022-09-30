@@ -78,7 +78,7 @@ public class WritePostActivity extends BasicActivity{
         });
 
         pointText = findViewById(R.id.point);
-        PlusPoint();
+
         NowPoint();
 
     }
@@ -143,6 +143,7 @@ public class WritePostActivity extends BasicActivity{
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.check:
+                    PlusPoint();
                     contentsUpdate();
                     break;
                 case R.id.shot:
@@ -224,7 +225,7 @@ public class WritePostActivity extends BasicActivity{
                                             if(pathList.size() == okCount){
                                                 //완료
                                                 PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), new Date());
-                                                PlusPoint();
+
                                                 startToast("게시물이 등록되었습니다. 500point 충전되었습니다.");
                                                 dbuploader(documentReference, postInfo);
                                                 for(int a=0; a<contentsList.size(); a++){
