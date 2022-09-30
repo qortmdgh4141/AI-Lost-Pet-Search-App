@@ -132,7 +132,7 @@ public class WritePostActivity extends BasicActivity{
             case 1:
                 if(resultCode == Activity.RESULT_OK) {
                     String profilePath = data.getStringExtra("profilePath");
-                    Glide.with(this).load(profilePath).centerCrop().override(1000).into(selectedImageView);
+                    Glide.with(this).load(profilePath).override(1000).into(selectedImageView);
                 }
                 break;
         }
