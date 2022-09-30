@@ -33,13 +33,6 @@
             android:hapticFeedbackEnabled="false"
             app:srcCompat="@drawable/ic_baseline_map_24" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="300dp"
-            android:background="#219fF3"
-            android:text="보호소정보" />
 
     </RelativeLayout>
 

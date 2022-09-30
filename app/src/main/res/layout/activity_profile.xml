@@ -44,6 +44,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
@@ -53,6 +54,7 @@
                 android:textColor="#000000"
                 android:textColorHint="#7E7878"/>
             <TextView
+                android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
@@ -61,6 +63,7 @@
                 android:textColor="#000000"
                 android:textColorHint="#7E7878"/>
             <TextView
+                android:id="@+id/birthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
@@ -69,6 +72,7 @@
                 android:textColor="#000000"
                 android:textColorHint="#7E7878"/>
             <TextView
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
@@ -77,13 +81,24 @@
                 android:textColor="#000000"
                 android:textColorHint="#7E7878"/>
             <TextView
+                android:id="@+id/point"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
                 android:text="잔여 포인트: "
                 android:textSize="22dp"
                 android:textColor="#000000"
                 android:textColorHint="#7E7878"/>
+
+            <Button
+                android:id="@+id/logout_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="로그아웃"
+                android:background="#CF4747"
+                android:textColor="@color/black"
+                android:layout_gravity="right"
+                android:textSize="15dp"
+                />
 
         </LinearLayout>
     </LinearLayout>
