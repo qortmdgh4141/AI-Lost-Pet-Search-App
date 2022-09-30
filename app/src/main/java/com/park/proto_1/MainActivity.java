@@ -53,6 +53,8 @@ public class MainActivity extends BasicActivity {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     } else if (itemId == R.id.api) {
                         startActivity(new Intent(getApplicationContext(), Api_main.class));
+                    }else if (itemId == R.id.profile) {
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     }
                     finish();
                 }, 100);
@@ -93,7 +95,7 @@ public class MainActivity extends BasicActivity {
         floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.bringToFront();
         findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
-        findViewById(R.id.button).setOnClickListener(onClickListener);
+
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -107,15 +109,6 @@ public class MainActivity extends BasicActivity {
             }
         });
 
-        Button Btn = (Button) findViewById(R.id.button);
-
-        Btn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), Api_main.class);
-                startActivity(intent);
-            }
-        });
     }
 
     protected void onResume(){

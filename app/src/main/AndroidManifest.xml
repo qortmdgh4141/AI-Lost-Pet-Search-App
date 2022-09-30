@@ -4,24 +4,24 @@
     package="com.park.proto_1">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <permission android:name="wonpa.alwaysweb.com.myloctest.permission.MAPS_RECEIVE"
+
+    <permission
+        android:name="wonpa.alwaysweb.com.myloctest.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="wonpa.alwaysweb.com.myloctest.permission.MAPS_RECEIVE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -32,7 +32,9 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
 
         <uses-library android:name="com.google.android.maps" />
         <uses-library
@@ -69,8 +71,6 @@
         <activity android:name=".WritePostActivity" />
         <activity android:name=".Api_main" />
         <activity android:name=".GPSMapActivity" />
-
-
     </application>
 
 </manifest>

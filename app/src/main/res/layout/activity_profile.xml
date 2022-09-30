@@ -14,11 +14,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/MProfile"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:gravity="center"
-            android:text="회원정보"
+            android:text="나의 프로필"
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -43,99 +43,58 @@
                     tools:srcCompat="@tools:sample/avatars" />
             </androidx.cardview.widget.CardView>
 
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="이름"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:textColor="#000000"
-                android:textColorHint="#7E7878" />
-
-            <EditText
-                android:id="@+id/phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="전화번호"
-                android:inputType="phone"
-                android:minHeight="48dp"
-                android:textColor="#000000"
-                android:textColorHint="#7E7878" />
-
-            <EditText
-                android:id="@+id/birthday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="생년월일"
-                android:inputType="date"
-                android:minHeight="48dp"
-                android:textColor="#000000"
-                android:textColorHint="#7E7878" />
-
-            <EditText
-                android:id="@+id/postalAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="주소"
-                android:inputType="textPostalAddress"
-                android:minHeight="48dp"
-                android:textColor="#000000"
-                android:textColorHint="#7E7878" />
-
-            <Button
-                android:id="@+id/checkButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="확인" />
-
             <TextView
-                android:id="@+id/point"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="center_vertical"
-                android:text="회원가입시 포인트: 5000 point"
-                android:textColor="#686565"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginTop="10dp"
+                android:text="이름: "
+                android:textSize="25dp"
+                android:textColor="#000000"
+                android:textColorHint="#7E7878"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="전화번호: "
+                android:textSize="22dp"
+                android:textColor="#000000"
+                android:textColorHint="#7E7878"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="생년월일: "
+                android:textSize="22dp"
+                android:textColor="#000000"
+                android:textColorHint="#7E7878"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="주소: "
+                android:textSize="22dp"
+                android:textColor="#000000"
+                android:textColorHint="#7E7878"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="잔여 포인트: "
+                android:textSize="22dp"
+                android:textColor="#000000"
+                android:textColorHint="#7E7878"/>
+
         </LinearLayout>
     </LinearLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:elevation="10dp"
-        android:visibility="visible"
-        app:cardCornerRadius="15dp"
-        tools:visibility="gone">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <Button
-                android:id="@+id/pictureBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="사진촬영" />
-
-            <Button
-                android:id="@+id/gallery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="갤러리" />
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
+        android:background="#60C6FA"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menuresource" />
 </RelativeLayout>

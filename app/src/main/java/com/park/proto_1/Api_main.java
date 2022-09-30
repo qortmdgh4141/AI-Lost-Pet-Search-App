@@ -63,6 +63,8 @@ public class Api_main extends AppCompatActivity{
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     } else if (itemId == R.id.api) {
                         startActivity(new Intent(getApplicationContext(), Api_main.class));
+                    }else if (itemId == R.id.profile) {
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     }
                     finish();
                 }, 100);

@@ -26,10 +26,10 @@
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@+id/ApiImageView"
                     android:lines="1"
-                    android:paddingTop="0dp"
+                    android:paddingTop="5dp"
                     android:text="title" />
 
                 <TextView
@@ -37,10 +37,10 @@
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@+id/ApiImageView"
                     android:lines="1"
-                    android:paddingTop="20dp"
+                    android:paddingTop="25dp"
                     android:text="title" />
 
                 <TextView
@@ -48,10 +48,10 @@
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="14dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@+id/ApiImageView"
                     android:lines="1"
-                    android:paddingTop="40dp"
+                    android:paddingTop="45dp"
                     android:text="title" />
 
                 <TextView
@@ -59,10 +59,10 @@
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@+id/ApiImageView"
                     android:lines="1"
-                    android:paddingTop="60dp"
+                    android:paddingTop="65dp"
                     android:text="title" />
 
         </RelativeLayout>

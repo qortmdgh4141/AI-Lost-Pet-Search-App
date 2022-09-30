@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/main"
         android:enabled="true"
+        app:showAsAction="always"
         android:icon="@color/purple_700"
         android:title="메인게시판"/>
     <item
         android:id="@+id/nomal"
         android:enabled="true"
+        app:showAsAction="always"
         android:icon="@color/purple_500"
         android:title="일반 보호중"/>
     <item
         android:id="@+id/api"
         android:enabled="true"
+        app:showAsAction="always"
         android:icon="@color/purple_700"
         android:title="기관 보호중"/>
     <item
         android:id="@+id/profile"
         android:enabled="true"
+        app:showAsAction="always"
         android:icon="@color/purple_500"
         android:title="프로필"/>
 </menu>

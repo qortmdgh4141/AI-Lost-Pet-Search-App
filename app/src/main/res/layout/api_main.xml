@@ -9,16 +9,20 @@
     <TextView
         android:id="@+id/text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="보호소 동물 게시판"
         android:gravity="center"
         android:textSize="40dp"
-        android:textColor="@color/purple_500"
+        android:background="#0B629C"
+        android:textColor="#D6D2D2"
         android:textStyle="bold" />
     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
         android:id="@+id/search_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:background="#5482B3"
+        app:hintText="여기를 클릭하여 지역을 선택해주세요."
         android:minHeight="48dp"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -44,8 +48,9 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/teal_700"
+        android:background="#60C6FA"
         app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/menuresource" />
 </LinearLayout>
