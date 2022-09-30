@@ -40,21 +40,16 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     }
 
     // Create new views (invoked by the layout manager)
+    @NonNull
     @Override
-    public GalleryAdapter.GalleryViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        // Create a new view, which defines the UI of the list item
-        CardView cardView = (CardView) LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_gallery, viewGroup, false);
-
+    public GalleryAdapter.GalleryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_gallery, parent, false);
         final GalleryViewHolder galleryViewHolder = new GalleryViewHolder(cardView);
-
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("profilePath",localDataSet.get(galleryViewHolder.getAdapterPosition()));
-                activity.setResult(Activity.RESULT_OK, resultIntent);
-                activity.finish();
-            }
+        cardView.setOnClickListener(view -> {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("profilePath",localDataSet.get(galleryViewHolder.getAdapterPosition()));
+            activity.setResult(Activity.RESULT_OK, resultIntent);
+            activity.finish();
         });
 
         return new GalleryViewHolder(cardView);

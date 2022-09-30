@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,18 +30,25 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/contentsEditText"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="내용"
-                    android:inputType="textMultiLine"
-                    android:lines="50"
-                    android:maxLines="100"
-                    android:minHeight="48dp"
-                    android:minLines="1"
-                    android:singleLine="false" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/contentsEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="내용"
+                        android:inputType="textMultiLine"
+                        android:lines="50"
+                        android:maxLines="100"
+                        android:minHeight="48dp"
+                        android:minLines="1"
+                        android:singleLine="false" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -52,12 +63,6 @@
                     android:layout_weight="1"
                     android:text="사진" />
 
-                <Button
-                    android:id="@+id/video"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="동영상" />
             </LinearLayout>
 
             <Button
@@ -74,8 +79,48 @@
                 android:textColor="@color/teal_200"
                 android:textStyle="bold" />
         </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/buttonsBackgroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A8838181"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:elevation="10dp"
+            android:visibility="visible"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/imageModify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="이미지수정"></Button>
+
+                <Button
+                    android:id="@+id/delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="삭제"></Button>
+
+            </LinearLayout>
 
 
+        </androidx.cardview.widget.CardView>
 
+    </RelativeLayout>
 
-</ScrollView>
+</RelativeLayout>

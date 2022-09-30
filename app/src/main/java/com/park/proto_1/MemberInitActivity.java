@@ -94,36 +94,11 @@ public class MemberInitActivity extends BasicActivity {
                 mystartActivity(CameraActivity.class);
                 break;
             case R.id.gallery:
-                if(ContextCompat.checkSelfPermission(MemberInitActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-                    if(ActivityCompat.shouldShowRequestPermissionRationale(MemberInitActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)){
-                        ActivityCompat.requestPermissions(MemberInitActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
-                    }
-                    else{
-                        ActivityCompat.requestPermissions(MemberInitActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
-                        startToast("권한을 허용해 주세요");
-                    }
-                }else{
-                    mystartActivity(GalleryActivity.class);
-                }
+                mystartActivity(GalleryActivity.class);
                 break;
 
         }
     };
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 1:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    mystartActivity(GalleryActivity.class);
-                } else {
-                    startToast("권한을 허용해 주세요");
-                }
-        }
-    }
-
 
     private void profileUpdate() {
         String name = ((EditText)findViewById(R.id.name)).getText().toString();
