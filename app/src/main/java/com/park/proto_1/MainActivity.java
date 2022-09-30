@@ -28,6 +28,8 @@ import java.util.Date;
 
 public class MainActivity extends BasicActivity {
     private static final String TAG = "MainActivity";
+
+    //파베관련, 리사이클러 변수들 전역으로 빼줌
     private FirebaseUser firebaseUser;
     private FirebaseFirestore firebaseFirestore;
     private RecyclerView recyclerView;
@@ -37,6 +39,7 @@ public class MainActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //파베유저 생성변수 위로 올림
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if(firebaseUser == null) {
@@ -65,10 +68,12 @@ public class MainActivity extends BasicActivity {
 
         }
 
+        //아이디 참조부분
         recyclerView = findViewById(R.id.recyclerView1);
         findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
         findViewById(R.id.button).setOnClickListener(onClickListener);
 
+        //리사이클러뷰 레이아웃매니저
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
@@ -92,6 +97,7 @@ public class MainActivity extends BasicActivity {
         });
     }
 
+    //리스트 출력 꼬이지 않게 새로 만들어주는 함수
     protected void onResume(){
         super.onResume();
 
