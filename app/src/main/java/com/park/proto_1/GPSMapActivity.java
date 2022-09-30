@@ -36,7 +36,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.pedro.library.AutoPermissions;
 import com.pedro.library.AutoPermissionsListener;
 
-public class GPSMapActivity extends AppCompatActivity implements AutoPermissionsListener {
+public class GPSMapActivity extends AppCompatActivity implements AutoPermissionsListener{
 
     private Button button1, button2;
     private TextView textView1;
@@ -214,7 +214,7 @@ public class GPSMapActivity extends AppCompatActivity implements AutoPermissions
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         manager.removeUpdates(gpsListener);
 

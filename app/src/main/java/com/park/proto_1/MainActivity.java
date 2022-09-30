@@ -3,6 +3,7 @@ package com.park.proto_1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -16,21 +17,45 @@ import android.widget.ImageButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.protobuf.Api;
 
-public class MainActivity extends BasicActivity {
+public class MainActivity extends AppCompatActivity{
     private static final String TAG = "MainActivity";
 
+    private Context mContext = MainActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //네비게이션바
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setSelectedItemId(R.id.main);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                bottomNavigationView.postDelayed(() -> {
+                    int itemId = item.getItemId();
+                    if (itemId == R.id.main) {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    } else if (itemId == R.id.api) {
+                        startActivity(new Intent(getApplicationContext(), Api_main.class));
+                    }
+                    finish();
+                 }, 100);
+                    return true;
+            };
+        });
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //
@@ -64,6 +89,7 @@ public class MainActivity extends BasicActivity {
         findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
         findViewById(R.id.button).setOnClickListener(onClickListener);
 
+
         ImageButton mapBtn = (ImageButton) findViewById(R.id.mapBtn);
         mapBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -82,7 +108,10 @@ public class MainActivity extends BasicActivity {
                 startActivity(intent);
             }
         });
+
     }
+
+
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
