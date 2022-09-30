@@ -7,12 +7,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -28,8 +32,6 @@ import java.util.Date;
 
 public class MainActivity extends BasicActivity {
     private static final String TAG = "MainActivity";
-
-    //파베관련, 리사이클러 변수들 전역으로 빼줌
     private FirebaseUser firebaseUser;
     private FirebaseFirestore firebaseFirestore;
     private RecyclerView recyclerView;
@@ -39,7 +41,25 @@ public class MainActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //파베유저 생성변수 위로 올림
+        //네비게이션바 이벤트 HT
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.main);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                bottomNavigationView.postDelayed(() -> {
+                    int itemId = item.getItemId();
+                    if (itemId == R.id.main) {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    } else if (itemId == R.id.api) {
+                        startActivity(new Intent(getApplicationContext(), Api_main.class));
+                    }
+                    finish();
+                }, 100);
+                return true;
+            };
+        });
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if(firebaseUser == null) {
@@ -68,12 +88,13 @@ public class MainActivity extends BasicActivity {
 
         }
 
-        //아이디 참조부분
         recyclerView = findViewById(R.id.recyclerView1);
+        FloatingActionButton floatingActionButton;
+        floatingActionButton = findViewById(R.id.floatingActionButton);
+        floatingActionButton.bringToFront();
         findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
         findViewById(R.id.button).setOnClickListener(onClickListener);
 
-        //리사이클러뷰 레이아웃매니저
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
@@ -97,8 +118,6 @@ public class MainActivity extends BasicActivity {
         });
     }
 
-    //리스트 출력 꼬이지 않게 새로 만들어주는 함수
-    @Override
     protected void onResume(){
         super.onResume();
 

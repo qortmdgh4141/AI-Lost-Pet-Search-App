@@ -1,18 +1,25 @@
 package com.park.proto_1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,7 +29,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.security.AllPermission;
 import java.util.ArrayList;
 
 
@@ -33,7 +39,8 @@ public class Api_main extends AppCompatActivity{
     // 리사이클러뷰
     private RecyclerView recyclerView;
 
-    private Spinner spinner;
+    public Spinner spinner;
+    private Context mContext = Api_main.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,30 +48,62 @@ public class Api_main extends AppCompatActivity{
         setContentView(R.layout.api_main);
         recyclerView = findViewById(R.id.Apirecyclerview);
         spinner = findViewById(R.id.search_spinner);
-
         adapter = new ApiRecyclerAdapter();
-        ArrayList<String> Spinnerlist = new ArrayList<>();
+        AllReStart();
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.api);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                bottomNavigationView.postDelayed(() -> {
+                    int itemId = item.getItemId();
+                    if (itemId == R.id.main) {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    } else if (itemId == R.id.api) {
+                        startActivity(new Intent(getApplicationContext(), Api_main.class));
+                    }
+                    finish();
+                }, 100);
+                return true;
+            };
+        });
+
+
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        AllReStart();
+    }
+
+    public void AllReStart(){
+        ArrayList<String> Spinnerlist = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
-
-        //2. 데이터 담기
         Spinnerlist.add("모든지역");
         Spinnerlist.add("화성시");
         Spinnerlist.add("수원시");
         Spinnerlist.add("성남시");
         Spinnerlist.add("부천시");
 
-        //3. 스피너에 리스트 적용
         spinner.setAdapter(new ArrayAdapter<>(Api_main.this
                 , android.R.layout.simple_spinner_dropdown_item, Spinnerlist));
+        spinner.setAdapter(new ArrayAdapter<>(Api_main.this
+                , android.R.layout.simple_spinner_dropdown_item, Spinnerlist));
+
+
         SpinnerUsing(spinner);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-
-
     }
+
     public void SpinnerUsing(Spinner spinner){
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -75,7 +114,6 @@ public class Api_main extends AppCompatActivity{
 
                 //선택한 데이터를 변수에 넣다.
                 String number = adapterView.getItemAtPosition(position).toString();
-                adapter.notifyDataSetChanged();
                 if(number == "모든지역") {
                     String AllData = "AllData.json";
                     ReadJson(AllData);
@@ -161,6 +199,10 @@ public class Api_main extends AppCompatActivity{
         }catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
     }
 
 
