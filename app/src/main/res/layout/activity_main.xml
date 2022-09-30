@@ -29,6 +29,7 @@
             android:id="@+id/mapBtn"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:background="#219fF3"
             android:hapticFeedbackEnabled="false"
             app:srcCompat="@drawable/ic_baseline_map_24" />
 
@@ -37,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="300dp"
+            android:background="#219fF3"
             android:text="보호소정보" />
 
     </RelativeLayout>
@@ -48,8 +50,8 @@
         android:layout_below="@+id/header"
         android:layout_alignBottom="@id/header"
         android:layout_alignParentBottom="true"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_marginStart="0dp" />
+        android:layout_marginStart="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"

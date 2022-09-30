@@ -98,6 +98,7 @@ public class MainActivity extends BasicActivity {
     }
 
     //리스트 출력 꼬이지 않게 새로 만들어주는 함수
+    @Override
     protected void onResume(){
         super.onResume();
 

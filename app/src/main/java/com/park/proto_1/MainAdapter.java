@@ -28,10 +28,33 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.GalleryViewHol
     public static class GalleryViewHolder extends RecyclerView.ViewHolder {
        public CardView cardView;
 
-        public GalleryViewHolder(CardView view) {
+        public GalleryViewHolder(Activity activity, CardView view, PostInfo postInfo) {
             super(view);
-            // Define click listener for the ViewHolder's View
             cardView = view;
+
+            LinearLayout contentsLayout = cardView.findViewById(R.id.contentsLayout);
+            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            ArrayList<String> contentsList = postInfo.getContents();
+
+
+            if(contentsLayout.getChildCount() == 0){
+                for(int i=0; i<contentsList.size(); i++){
+                    String contents = contentsList.get(i);
+                    if(Patterns.WEB_URL.matcher(contents).matches()){
+                        ImageView imageView = new ImageView(activity);
+                        imageView.setLayoutParams(layoutParams);
+                        imageView.setAdjustViewBounds(true);
+                        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                        contentsLayout.addView(imageView);
+                        Glide.with(activity).load(contents).override(1000).thumbnail(0.1f).into(imageView);
+                    }else{
+                        TextView textView = new TextView(activity);
+                        textView.setLayoutParams(layoutParams);
+                        //textView.setText(contents);
+                        contentsLayout.addView(textView);
+                    }
+                }
+            }
         }
     }
 
@@ -40,11 +63,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.GalleryViewHol
         this.activity = activity;
     }
 
+    @Override
+    public int getItemViewType(int position){
+        return position;
+    }
+
     @NonNull
     @Override
     public MainAdapter.GalleryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post, parent, false);
-        final GalleryViewHolder galleryViewHolder = new GalleryViewHolder(cardView);
+        final GalleryViewHolder galleryViewHolder = new GalleryViewHolder(activity, cardView, mDataSet.get(viewType));
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,26 +95,17 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.GalleryViewHol
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(mDataSet.get(position).getCreatedAt()));
 
         LinearLayout contentsLayout = cardView.findViewById(R.id.contentsLayout);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ArrayList<String> contentsList = mDataSet.get(position).getContents();
 
-        if(contentsLayout.getChildCount() == 0){
-            for(int i=0; i<contentsList.size(); i++){
-                String contents = contentsList.get(i);
-                if(Patterns.WEB_URL.matcher(contents).matches()){
-                    ImageView imageView = new ImageView(activity);
-                    imageView.setLayoutParams(layoutParams);
-                    contentsLayout.addView(imageView);
-                    Glide.with(activity).load(contents).override(1000).thumbnail(0.1f).into(imageView);
-                }else{
-                    TextView textView = new TextView(activity);
-                    textView.setLayoutParams(layoutParams);
-                    textView.setText(contents);
-                    contentsLayout.addView(textView);
-                }
+
+        for(int i=0; i<contentsList.size(); i++){
+            String contents = contentsList.get(i);
+            if(Patterns.WEB_URL.matcher(contents).matches()){
+                Glide.with(activity).load(contents).override(1000).thumbnail(0.1f).into((ImageView) contentsLayout.getChildAt(i));
+            }else{
+                ((TextView)contentsLayout.getChildAt(i)).setText(contents);
             }
         }
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)
