@@ -15,10 +15,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     public ArrayList<String> mDataSet;
     private Activity activity;
 
-    public static class GalleryViewHolder extends RecyclerView.ViewHolder {
-       public CardView cardView;
-
-        public GalleryViewHolder(CardView view) {
+    static class GalleryViewHolder extends RecyclerView.ViewHolder {
+       CardView cardView;
+       GalleryViewHolder(CardView view) {
             super(view);
             cardView = view;
         }
@@ -32,7 +31,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     // Create new views (invoked by the layout manager)
     @NonNull
     @Override
-    public GalleryAdapter.GalleryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public GalleryAdapter.GalleryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_gallery, parent, false);
         final GalleryViewHolder galleryViewHolder = new GalleryViewHolder(cardView);
         cardView.setOnClickListener(view -> {

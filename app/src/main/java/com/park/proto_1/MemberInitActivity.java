@@ -39,7 +39,7 @@ public class MemberInitActivity extends BasicActivity {
     private static final String TAG = "MemberInitActivity";
     private ImageView profileImage;
     private String profilePath;
-    FirebaseUser user;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,14 +97,15 @@ public class MemberInitActivity extends BasicActivity {
                 mystartActivity(GalleryActivity.class);
                 break;
 
+
         }
     };
 
     private void profileUpdate() {
-        String name = ((EditText)findViewById(R.id.name)).getText().toString();
-        String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
-        String birthday = ((EditText)findViewById(R.id.birthday)).getText().toString();
-        String address = ((EditText)findViewById(R.id.postalAddress)).getText().toString();
+        final String name = ((EditText)findViewById(R.id.name)).getText().toString();
+        final String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
+        final String birthday = ((EditText)findViewById(R.id.birthday)).getText().toString();
+        final String address = ((EditText)findViewById(R.id.postalAddress)).getText().toString();
         int point = 5000;
         if(name.length() > 0 && phone.length() > 9 && birthday.length() > 5 && address.length() > 0) {
             FirebaseStorage storage = FirebaseStorage.getInstance();

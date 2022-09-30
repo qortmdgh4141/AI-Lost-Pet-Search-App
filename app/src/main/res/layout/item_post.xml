@@ -20,7 +20,7 @@
             android:textColor="#009688"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="타이블" />
+            tools:text="텍스트" />
 
         <LinearLayout
             android:id="@+id/contentsLayout"
@@ -32,7 +32,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/creatAtTextView"
+            android:id="@+id/createdAtTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"

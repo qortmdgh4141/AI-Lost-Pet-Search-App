@@ -46,22 +46,17 @@ public class WritePostActivity extends BasicActivity{
     private ArrayList<String> pathList = new ArrayList<>();
     private LinearLayout parent;
     private RelativeLayout buttonsBackgroundLayout;
-    private ImageView selectedImageView;
+    private ImageView selectedImageVIew;
     private EditText selectedEditText;
-
-    private int pathCount;
-    private int  okCount;
+    private int pathCount, okCount;
     private TextView pointText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_post);
-
-
-        buttonsBackgroundLayout = findViewById(R.id.buttonsBackgroundLayout);
         parent = findViewById(R.id.contentsLayout);
-
+        buttonsBackgroundLayout = findViewById(R.id.buttonsBackgroundLayout);
         buttonsBackgroundLayout.setOnClickListener(onClickListener);
         findViewById(R.id.check).setOnClickListener(onClickListener);
         findViewById(R.id.shot).setOnClickListener(onClickListener);
@@ -70,8 +65,8 @@ public class WritePostActivity extends BasicActivity{
         findViewById(R.id.contentsEditText).setOnFocusChangeListener(onFocusChangeListener);
         findViewById(R.id.titleEditText).setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onFocusChange(View view, boolean b) {
-                if(b){
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
                     selectedEditText = null;
                 }
             }
@@ -87,40 +82,35 @@ public class WritePostActivity extends BasicActivity{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case 0 :
-                if(resultCode == Activity.RESULT_OK) {
+            case 0:
+                if (resultCode == Activity.RESULT_OK) {
                     String profilePath = data.getStringExtra("profilePath");
                     pathList.add(profilePath);
-
                     ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
                     LinearLayout linearLayout = new LinearLayout(WritePostActivity.this);
                     linearLayout.setLayoutParams(layoutParams);
                     linearLayout.setOrientation(LinearLayout.VERTICAL);
-
                     if(selectedEditText == null){
                         parent.addView(linearLayout);
                     }else{
-                        for(int i=0; i<parent.getChildCount(); i++){
-                            if(parent.getChildAt(i)==selectedEditText.getParent()){
-                                parent.addView(linearLayout, i+1);
+                        for(int i = 0; i < parent.getChildCount(); i++){
+                            if(parent.getChildAt(i) == selectedEditText.getParent()){
+                                parent.addView(linearLayout, i + 1);
                                 break;
                             }
                         }
                     }
-
                     ImageView imageView = new ImageView(WritePostActivity.this);
                     imageView.setLayoutParams(layoutParams);
                     imageView.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View view) {
+                        public void onClick(View v) {
                             buttonsBackgroundLayout.setVisibility(View.VISIBLE);
-                            selectedImageView = (ImageView) view;
+                            selectedImageVIew = (ImageView) v;
                         }
                     });
-                    Glide.with(this).load(profilePath).centerCrop().override(1000).into(imageView);
-                    parent.addView(imageView);
-
+                    Glide.with(this).load(profilePath).override(1000).into(imageView);
+                    linearLayout.addView(imageView);
                     EditText editText = new EditText(WritePostActivity.this);
                     editText.setLayoutParams(layoutParams);
                     editText.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_CLASS_TEXT);
@@ -130,9 +120,9 @@ public class WritePostActivity extends BasicActivity{
                 }
                 break;
             case 1:
-                if(resultCode == Activity.RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     String profilePath = data.getStringExtra("profilePath");
-                    Glide.with(this).load(profilePath).override(1000).into(selectedImageView);
+                    Glide.with(this).load(profilePath).override(1000).into(selectedImageVIew);
                 }
                 break;
         }
@@ -143,8 +133,8 @@ public class WritePostActivity extends BasicActivity{
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.check:
-                    PlusPoint();
                     contentsUpdate();
+                    PlusPoint();
                     break;
                 case R.id.shot:
                     mystartActivity(GalleryActivity.class, 0);
@@ -159,7 +149,7 @@ public class WritePostActivity extends BasicActivity{
                     buttonsBackgroundLayout.setVisibility(View.GONE);
                     break;
                 case R.id.delete:
-                    parent.removeView((View) selectedImageView.getParent());
+                    parent.removeView((View) selectedImageVIew.getParent());
                     buttonsBackgroundLayout.setVisibility(View.GONE);
                     break;
             }
@@ -177,34 +167,29 @@ public class WritePostActivity extends BasicActivity{
 
     private void contentsUpdate(){
         final String title = ((EditText) findViewById(R.id.titleEditText)).getText().toString();
-        if(title.length()>0){
+        if (title.length() > 0) {
             final ArrayList<String> contentsList = new ArrayList<>();
             user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
             final DocumentReference documentReference = firebaseFirestore.collection("posts").document();
-
-            for(int i=0; i<parent.getChildCount(); i++){
-                LinearLayout linearLayout = (LinearLayout) parent.getChildAt(i);
-                for(int j=0; j<parent.getChildCount(); j++){
-                    View view = linearLayout.getChildAt(j);
+            for(int i = 0; i < parent.getChildCount(); i++){
+                LinearLayout linearLayout = (LinearLayout)parent.getChildAt(i);
+                for(int ii = 0; ii < linearLayout.getChildCount(); ii++){
+                    View view = linearLayout.getChildAt(ii);
                     if(view instanceof EditText){
                         String text = ((EditText)view).getText().toString();
                         if(text.length() > 0){
                             contentsList.add(text);
                         }
-                    }else{
+                    } else {
                         contentsList.add(pathList.get(pathCount));
                         String[] pathArray = pathList.get(pathCount).split("\\.");
-                        final StorageReference mountainImagesRef = storageRef.child("posts/"+ documentReference.getId() +"/"+pathCount+"."+pathArray[pathArray.length-1]);
+                        final StorageReference mountainImagesRef = storageRef.child("posts/" + documentReference.getId() + "/"+pathCount+"."+pathArray[pathArray.length - 1]);
                         try {
                             InputStream stream = new FileInputStream(new File(pathList.get(pathCount)));
-
-                            StorageMetadata metadata = new StorageMetadata.Builder()
-                                    .setCustomMetadata("index", ""+(contentsList.size()-1))
-                                    .build();
-
+                            StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index",""+(contentsList.size()-1)).build();
                             UploadTask uploadTask = mountainImagesRef.putStream(stream, metadata);
                             uploadTask.addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -214,45 +199,41 @@ public class WritePostActivity extends BasicActivity{
                             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    final int index =Integer.parseInt(taskSnapshot.getMetadata().getCustomMetadata("index"));
-
+                                    final int index = Integer.parseInt(taskSnapshot.getMetadata().getCustomMetadata("index"));
                                     mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
                                         public void onSuccess(Uri uri) {
-                                            Log.e("로그", "uri"+uri);
                                             contentsList.set(index, uri.toString());
                                             okCount++;
                                             if(pathList.size() == okCount){
                                                 //완료
                                                 PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), new Date());
-
-                                                startToast("게시물이 등록되었습니다. 500point 충전되었습니다.");
-                                                dbuploader(documentReference, postInfo);
-                                                for(int a=0; a<contentsList.size(); a++){
-                                                    Log.e("로그", "콘텐츠: "+contentsList.get(a));
+                                                storeUpload(documentReference, postInfo);
+                                                for(int a = 0; a < contentsList.size(); a++){
+                                                    Log.e("로그: ","콘덴츠: "+contentsList.get(a));
                                                 }
                                             }
                                         }
                                     });
                                 }
                             });
-                        } catch (FileNotFoundException e){
-                            Log.e("로그", "에러 "+e.toString());
+                        } catch (FileNotFoundException e) {
+                            Log.e("로그", "에러: " + e.toString());
                         }
                         pathCount++;
                     }
                 }
             }
-            if(pathList.size()==0){
+            if(pathList.size() == 0){
                 PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), new Date());
-                dbuploader(documentReference, postInfo);
+                storeUpload(documentReference, postInfo);
             }
-        } else{
-            startToast("제목, 내용을 입력해주세요.");
+        } else {
+            startToast("제목을 입력해주세요.");
         }
     }
 
-    private void dbuploader(DocumentReference documentReference, PostInfo postInfo){
+    private void storeUpload(DocumentReference documentReference, PostInfo postInfo){
         documentReference.set(postInfo)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -307,5 +288,4 @@ public class WritePostActivity extends BasicActivity{
         DocumentReference DR = pointDb.collection("users").document(user.getUid());
         DR.update("point", FieldValue.increment(500));
     }
-
 }

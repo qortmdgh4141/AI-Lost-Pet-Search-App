@@ -19,16 +19,14 @@ import com.bumptech.glide.Glide;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.concurrent.TimeoutException;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.GalleryViewHolder>{
-    public ArrayList<PostInfo> mDataSet;
+    private ArrayList<PostInfo> mDataSet;
     private final Activity activity;
 
-    public static class GalleryViewHolder extends RecyclerView.ViewHolder {
-       public CardView cardView;
-
-        public GalleryViewHolder(Activity activity, CardView view, PostInfo postInfo) {
+    static class GalleryViewHolder extends RecyclerView.ViewHolder {
+        CardView cardView;
+        GalleryViewHolder(Activity activity, CardView view, PostInfo postInfo) {
             super(view);
             cardView = view;
 
@@ -91,7 +89,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.GalleryViewHol
         TextView titleTextView = cardView.findViewById(R.id.titleTextView);
         titleTextView.setText(mDataSet.get(position).getTitle());
 
-        TextView createdAtTextView = cardView.findViewById(R.id.creatAtTextView);
+        TextView createdAtTextView = cardView.findViewById(R.id.createdAtTextView);
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(mDataSet.get(position).getCreatedAt()));
 
         LinearLayout contentsLayout = cardView.findViewById(R.id.contentsLayout);
