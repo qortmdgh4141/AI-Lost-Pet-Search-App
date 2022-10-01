@@ -69,7 +69,7 @@
         android:layout_alignParentBottom="true"
         android:background="#60C6FA"
         app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@color/black"
+        app:itemTextColor="@color/white"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menuresource" />
 </RelativeLayout>
