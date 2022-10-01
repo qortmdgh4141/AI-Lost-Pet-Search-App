@@ -125,11 +125,16 @@ public class ProfileActivity extends AppCompatActivity {
 
                 }
             });
-        }
-        DB.collection("users").document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
+
+            DB.collection("users").document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        if(task.getResult().getData() == null){
+                            startToast("회원정보를 입력해주세요.");
+                            startActivity(new Intent(getApplicationContext(), MemberInitActivity.class));
+                            finish();
+                        }else {
                             DocumentSnapshot documentSnapshot = task.getResult();
                             Object NM = documentSnapshot.getData().get("name");
                             Object PH = documentSnapshot.getData().get("phone");
@@ -141,17 +146,19 @@ public class ProfileActivity extends AppCompatActivity {
                             birthdayT.setText("생년월일:  " + BD.toString());
                             addressT.setText("주소:  " + AD.toString());
                             pointT.setText("잔여 포인트:  " + PT.toString() + "point");
-
                         }
                     }
-        }).addOnFailureListener(new OnFailureListener(){
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e(TAG,"Faild", e);
-                startToast("회원정보를 입력하세요.");
-                startActivity(new Intent(getApplicationContext(), MemberInitActivity.class));
-            }
-        });
+                }
+            }).addOnFailureListener(new OnFailureListener(){
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e(TAG,"Faild", e);
+
+                }
+            });
+        }
+
+
     }
 
     private void mystartActivity(Class c) {
