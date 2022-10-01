@@ -26,21 +26,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder>{
-    private ArrayList<PostInfo> mDataSet;
+public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveViewHolder>{
+    private final ArrayList<PostInfo> mDataSet;
     private final Activity activity;
-    private FirebaseFirestore firebaseFirestore;
+    private final FirebaseFirestore firebaseFirestore;
     private OnPostListener onPostListener;
 
-    static class MainViewHolder extends RecyclerView.ViewHolder {
+    static class ArchiveViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-        MainViewHolder(CardView view) {
+        ArchiveViewHolder(CardView view) {
             super(view);
             cardView = view;
         }
     }
 
-    public MainAdapter(Activity activity, ArrayList<PostInfo> dataSet) {
+    public ArchiveAdapter(Activity activity, ArrayList<PostInfo> dataSet) {
         this.mDataSet = dataSet;
         this.activity = activity;
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -58,14 +58,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
 
     @NonNull
     @Override
-    public MainAdapter.MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ArchiveAdapter.ArchiveViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post, parent, false);
-        final MainViewHolder mainViewHolder = new MainViewHolder(cardView);
+        final ArchiveViewHolder archiveViewHolder = new ArchiveViewHolder(cardView);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity, PostActivity.class);
-                intent.putExtra("postInfo", mDataSet.get(mainViewHolder.getAdapterPosition()));
+                intent.putExtra("postInfo", mDataSet.get(archiveViewHolder.getAdapterPosition()));
                 activity.startActivity(intent);
             }
         });
@@ -73,14 +73,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         cardView.findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup(v, mainViewHolder.getAdapterPosition());
+                showPopup(v, archiveViewHolder.getAdapterPosition());
             }
         });
-        return mainViewHolder;
+        return archiveViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MainViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ArchiveViewHolder holder, int position) {
 
         CardView cardView = holder.cardView;
         TextView titleTextView = cardView.findViewById(R.id.titleTextView);

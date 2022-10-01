@@ -69,12 +69,8 @@
         <activity android:name=".WritePostActivity" />
         <activity android:name=".Api_main" />
         <activity android:name=".GPSMapActivity" />
-        <activity
-            android:name=".ArchiveActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
+        <activity android:name=".ArchiveActivity" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".PostActivity"/>
 
 

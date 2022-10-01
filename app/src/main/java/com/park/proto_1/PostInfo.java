@@ -12,6 +12,7 @@ public class PostInfo implements Serializable {
     private String publisher;
     private Date createdAt;
     private String id;
+    private String phoneNumber;
 
     public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt, String id){
         this.title = title;
@@ -21,11 +22,12 @@ public class PostInfo implements Serializable {
         this.id = id;
     }
 
-    public PostInfo(String title, ArrayList<String> contents, String publisher, Date createdAt){
+    public PostInfo(String title, ArrayList<String> contents, String publisher,String phoneNumber, Date createdAt){
         this.title = title;
         this.contents = contents;
         this.publisher = publisher;
         this.createdAt = createdAt;
+        this.phoneNumber = phoneNumber;
     }
 
     public Map<String, Object> getPostInfo(){
@@ -34,6 +36,7 @@ public class PostInfo implements Serializable {
         docData.put("contents",contents);
         docData.put("publisher",publisher);
         docData.put("createdAt",createdAt);
+        docData.put("phoneNumber",phoneNumber);
         return  docData;
     }
 
@@ -67,6 +70,14 @@ public class PostInfo implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getId() {

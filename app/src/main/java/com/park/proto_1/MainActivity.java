@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,7 +44,6 @@ public class MainActivity extends BasicActivity {
     private StorageReference storageRef;
     private MainAdapter mainAdapter;
     private ArrayList<PostInfo> postList;
-    private Util util;
     private int successCount;
 
     @Override
@@ -74,7 +71,7 @@ public class MainActivity extends BasicActivity {
                     finish();
                 }, 100);
                 return true;
-            };
+            }
         });
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();

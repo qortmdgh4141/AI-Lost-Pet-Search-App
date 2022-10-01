@@ -8,11 +8,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,11 +52,11 @@ public class WritePostActivity extends BasicActivity{
     private RelativeLayout buttonsBackgroundLayout;
     private ImageView selectedImageVIew;
     private EditText selectedEditText;
+    private EditText phoneNumberEditText;
     private int pathCount, okCount;
     private EditText contentsEditText;
     private EditText titleEditText;
     private PostInfo postInfo;
-    private Util util;
     private TextView pointText;
 
     @Override
@@ -71,9 +69,11 @@ public class WritePostActivity extends BasicActivity{
 
         contentsEditText = findViewById(R.id.contentsEditText);
         titleEditText = findViewById(R.id.titleEditText);
+        phoneNumberEditText = findViewById(R.id.phoneNumber);
 
         findViewById(R.id.check).setOnClickListener(onClickListener);
         findViewById(R.id.shot).setOnClickListener(onClickListener);
+        findViewById(R.id.gotoArchive).setOnClickListener(onClickListener);
         findViewById(R.id.imageModify).setOnClickListener(onClickListener);
         findViewById(R.id.delete).setOnClickListener(onClickListener);
 
@@ -154,6 +154,10 @@ public class WritePostActivity extends BasicActivity{
                 case R.id.shot:
                     mystartActivity(GalleryActivity.class, 0);
                     break;
+                case R.id.gotoArchive:
+                    archiveUpdate();
+                    PlusPoint();
+                    break;
                 case R.id.buttonsBackgroundLayout:
                     if(buttonsBackgroundLayout.getVisibility()==View.VISIBLE){
                         buttonsBackgroundLayout.setVisibility(View.GONE);
@@ -197,6 +201,7 @@ public class WritePostActivity extends BasicActivity{
 
     private void contentsUpdate(){
         final String title = ((EditText) findViewById(R.id.titleEditText)).getText().toString();
+        final String phoneNumber = ((EditText) findViewById(R.id.phoneNumber)).getText().toString();
 
         if (title.length() > 0) {
             final ArrayList<String> contentsList = new ArrayList<>();
@@ -240,7 +245,7 @@ public class WritePostActivity extends BasicActivity{
                                             okCount--;
                                             contentsList.set(index, uri.toString());
                                             if(okCount == 0){
-                                                PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), date);
+                                                PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), phoneNumber, date);
                                                 storeUpload(documentReference, postInfo);
                                             }
                                         }
@@ -255,7 +260,75 @@ public class WritePostActivity extends BasicActivity{
                 }
             }
             if(okCount == 0){
-                storeUpload(documentReference, new PostInfo(title, contentsList, user.getUid(), date));
+                storeUpload(documentReference, new PostInfo(title, contentsList, user.getUid(), phoneNumber, date));
+            }
+        }else {
+            startToast("제목을 입력해주세요.");
+        }
+    }
+
+    private void archiveUpdate(){
+        final String title = ((EditText) findViewById(R.id.titleEditText)).getText().toString();
+        final String phoneNumber = ((EditText) findViewById(R.id.phoneNumber)).getText().toString();
+
+        if (title.length() > 0) {
+            final ArrayList<String> contentsList = new ArrayList<>();
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+            final DocumentReference documentReference = postInfo == null ? firebaseFirestore.collection("archive").document() : firebaseFirestore.collection("archive").document(postInfo.getId());
+            final Date date = postInfo == null ? new Date() : postInfo.getCreatedAt();
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                LinearLayout linearLayout = (LinearLayout) parent.getChildAt(i);
+                for (int ii = 0; ii < linearLayout.getChildCount(); ii++) {
+                    View view = linearLayout.getChildAt(ii);
+                    if(view instanceof EditText){
+                        String text = ((EditText)view).getText().toString();
+                        if(text.length() > 0){
+                            contentsList.add(text);
+                        }
+                    }else if(!isStorageUrl(pathList.get(pathCount))) {
+                        String path = pathList.get(pathCount);
+                        okCount++;
+                        contentsList.add(path);
+                        String[] pathArray = path.split("\\.");
+                        final StorageReference mountainImagesRef = storageRef.child("archive/" + documentReference.getId() + "/" + pathCount + "." + pathArray[pathArray.length - 1]);
+                        try {
+                            InputStream stream = new FileInputStream(new File(pathList.get(pathCount)));
+                            StorageMetadata metadata = new StorageMetadata.Builder().setCustomMetadata("index", "" + (contentsList.size() - 1)).build();
+                            UploadTask uploadTask = mountainImagesRef.putStream(stream, metadata);
+                            uploadTask.addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    final int index = Integer.parseInt(taskSnapshot.getMetadata().getCustomMetadata("index"));
+                                    mountainImagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            okCount--;
+                                            contentsList.set(index, uri.toString());
+                                            if(okCount == 0){
+                                                PostInfo postInfo = new PostInfo(title, contentsList, user.getUid(), phoneNumber, date);
+                                                storeUpload(documentReference, postInfo);
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        } catch (FileNotFoundException e){
+                            Log.e("로그", "에러");
+                        }
+                        pathCount++;
+                    }
+                }
+            }
+            if(okCount == 0){
+                storeUpload(documentReference, new PostInfo(title, contentsList, user.getUid(), phoneNumber, date));
             }
         }else {
             startToast("제목을 입력해주세요.");
@@ -282,10 +355,11 @@ public class WritePostActivity extends BasicActivity{
     private void postInit(){
         if(postInfo != null){
             titleEditText.setText(postInfo.getTitle());
+            phoneNumberEditText.setText(postInfo.getPhoneNumber());
             ArrayList<String> contentsList = postInfo.getContents();
             for(int i=0; i<contentsList.size(); i++){
                 String contents = contentsList.get(i);
-                if(isStorageUrl(contents)) {
+                if(Patterns.WEB_URL.matcher(contents).matches() && contents.contains("https://firebasestorage.googleapis.com/v0/b/find-dog-25917.appspot.com/o/archive")) {
                     pathList.add(contents);
 
                     ContentsItemView contentsItemView = new ContentsItemView(this);
@@ -302,7 +376,7 @@ public class WritePostActivity extends BasicActivity{
                     contentsItemView.setOnFocusChangeListener(onFocusChangeListener);
                     if (i < contentsList.size() - 1) {
                         String nextContents = contentsList.get(i + 1);
-                        if (!isStorageUrl(nextContents)) {
+                        if (!Patterns.WEB_URL.matcher(contents).matches() && contents.contains("https://firebasestorage.googleapis.com/v0/b/find-dog-25917.appspot.com/o/archive")) {
                             contentsItemView.setText(nextContents);
                         }
                     }

@@ -54,8 +54,7 @@ public class MemberInitActivity extends BasicActivity {
     }
 
     public void onBackPressed(){
-        //super.onBackPressed();
-        finishAffinity();
+        showToast(MemberInitActivity.this, "회원정보를 입력해주세요.");
     }
 
     @Override

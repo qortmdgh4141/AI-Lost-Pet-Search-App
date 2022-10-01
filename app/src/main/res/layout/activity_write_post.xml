@@ -25,6 +25,13 @@
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
 
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="전화번호 : "
+                android:inputType="phone" />
+
             <LinearLayout
                 android:id="@+id/contentsLayout"
                 android:layout_width="match_parent"
@@ -71,6 +78,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="확인" />
+
+            <Button
+                android:id="@+id/gotoArchive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="보관탭에 추가" />
+
             <TextView
                 android:id="@+id/point"
                 android:layout_width="match_parent"

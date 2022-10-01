@@ -23,8 +23,12 @@ public class PostActivity extends BasicActivity {
         setContentView(R.layout.activity_post);
 
         PostInfo postInfo = (PostInfo) getIntent().getSerializableExtra("postInfo");
+
         TextView titleTextView = findViewById(R.id.titleTextView);
         titleTextView.setText(postInfo.getTitle());
+
+        TextView phoneNumber = findViewById(R.id.phoneNumber);
+        phoneNumber.setText(postInfo.getPhoneNumber());
 
         TextView createdAtTextView = findViewById(R.id.createAtTextView);
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(postInfo.getCreatedAt()));
