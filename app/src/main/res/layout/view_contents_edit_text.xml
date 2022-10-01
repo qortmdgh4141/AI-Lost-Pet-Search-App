@@ -6,5 +6,6 @@
     android:layout_height="wrap_content"
     android:ems="10"
     android:gravity="top"
-    android:hint="내용"
+    android:hint="내용을 입력해주세요.(발견 장소, 강아지 특징 등)"
+    android:textColorHint="#6C97DF"
     android:inputType="textMultiLine" />

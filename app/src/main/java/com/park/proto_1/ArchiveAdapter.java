@@ -3,6 +3,8 @@ package com.park.proto_1;
 import static com.park.proto_1.Util.isArchiveStorageUrl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -20,6 +22,10 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -27,9 +33,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveViewHolder>{
-    private final ArrayList<PostInfo> mDataSet;
-    private final Activity activity;
-    private final FirebaseFirestore firebaseFirestore;
+    private ArrayList<PostInfo> mDataSet;
+    private Activity activity;
+    private FirebaseFirestore firebaseFirestore;
     private OnPostListener onPostListener;
 
     static class ArchiveViewHolder extends RecyclerView.ViewHolder {
@@ -45,7 +51,12 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         this.activity = activity;
         firebaseFirestore = FirebaseFirestore.getInstance();
     }
-
+    public void setArchiveAdapter(Activity activity, ArrayList<PostInfo> dataSet){
+        this.mDataSet = dataSet;
+        this.activity = activity;
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        notifyDataSetChanged();
+    }
     public void setOnPostListener(OnPostListener onPostListener){
         this.onPostListener = onPostListener;
     }
@@ -64,9 +75,20 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, ArchivePostActivity.class);
-                intent.putExtra("postInfo", mDataSet.get(archiveViewHolder.getAdapterPosition()));
-                activity.startActivity(intent);
+                AlertDialog.Builder dlg = new AlertDialog.Builder(view.getContext());
+                dlg.setTitle("게시글 열람 알림"); //제목
+                dlg.setMessage("게시글 상세보기시 100point 차감됩니다."); // 메시지
+//                dlg.setIcon(R.drawable.deum); // 아이콘 설정
+                dlg.setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which) {
+                        MinusPoint();
+                        Intent intent = new Intent(activity, ArchivePostActivity.class);
+                        intent.putExtra("postInfo", mDataSet.get(archiveViewHolder.getAdapterPosition()));
+                        activity.startActivity(intent);
+                    }
+                });
+                dlg.show();
+
             }
         });
 
@@ -85,6 +107,8 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         CardView cardView = holder.cardView;
         TextView titleTextView = cardView.findViewById(R.id.titleTextView);
         titleTextView.setText(mDataSet.get(position).getTitle());
+        TextView phonT = cardView.findViewById(R.id.phoneNumber);
+        phonT.setText("전화번호: " + mDataSet.get(position).getPhoneNumber());
 
         TextView createdAtTextView = cardView.findViewById(R.id.createAtTextView);
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(mDataSet.get(position).getCreatedAt()));
@@ -92,6 +116,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         LinearLayout contentsLayout = cardView.findViewById(R.id.contentsLayout);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ArrayList<String> contentsList = mDataSet.get(position).getContents();
+
 
 
         if(contentsLayout.getTag() == null || !contentsLayout.getTag().equals(contentsList)) {
@@ -124,7 +149,14 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
             }
         }
     }
+    private void MinusPoint(){
+        FirebaseFirestore pointDb = FirebaseFirestore.getInstance();
+        FirebaseUser user;
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
+        DocumentReference DR = pointDb.collection("users").document(user.getUid());
+        DR.update("point", FieldValue.increment(-100));
+    }
     @Override
     public int getItemCount() {
         return mDataSet.size();

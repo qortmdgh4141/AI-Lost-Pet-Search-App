@@ -3,8 +3,11 @@ package com.park.proto_1;
 import static com.park.proto_1.Util.isStorageUrl;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,12 +17,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -28,10 +38,10 @@ import java.util.Locale;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder>{
     private ArrayList<PostInfo> mDataSet;
-    private final Activity activity;
+    private Activity activity;
     private FirebaseFirestore firebaseFirestore;
     private OnPostListener onPostListener;
-
+    private FirebaseUser user;
     static class MainViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         MainViewHolder(CardView view) {
@@ -44,6 +54,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         this.mDataSet = dataSet;
         this.activity = activity;
         firebaseFirestore = FirebaseFirestore.getInstance();
+    }
+    public void setMainAdapter(Activity activity, ArrayList<PostInfo> dataSet){
+        this.mDataSet = dataSet;
+        this.activity = activity;
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        notifyDataSetChanged();
     }
 
     public void setOnPostListener(OnPostListener onPostListener){
@@ -64,9 +80,20 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, PostActivity.class);
-                intent.putExtra("postInfo", mDataSet.get(mainViewHolder.getAdapterPosition()));
-                activity.startActivity(intent);
+                AlertDialog.Builder dlg = new AlertDialog.Builder(view.getContext());
+                dlg.setTitle("게시글 열람 알림"); //제목
+                dlg.setMessage("게시글 상세보기시 100point 차감됩니다."); // 메시지
+//                dlg.setIcon(R.drawable.deum); // 아이콘 설정
+                dlg.setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which) {
+                        MinusPoint();
+                        Intent intent = new Intent(activity, PostActivity.class);
+                        intent.putExtra("postInfo", mDataSet.get(mainViewHolder.getAdapterPosition()));
+                        activity.startActivity(intent);
+                     }
+                });
+                dlg.show();
+
             }
         });
 
@@ -154,5 +181,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.post, popup.getMenu());
         popup.show();
+    }
+
+    private void MinusPoint(){
+        FirebaseFirestore pointDb = FirebaseFirestore.getInstance();
+        FirebaseUser user;
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        DocumentReference DR = pointDb.collection("users").document(user.getUid());
+        DR.update("point", FieldValue.increment(-100));
     }
 }

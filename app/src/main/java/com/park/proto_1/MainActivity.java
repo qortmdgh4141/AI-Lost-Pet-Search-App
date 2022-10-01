@@ -10,9 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,13 +49,15 @@ public class MainActivity extends BasicActivity {
     private StorageReference storageRef;
     private MainAdapter mainAdapter;
     private ArrayList<PostInfo> postList;
+    private ArrayList<PostInfo> search_list;
+    EditText search_edit;
     private int successCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        search_edit = findViewById(R.id.edit_search);
         //네비게이션바 이벤트 HT
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.main);
@@ -107,6 +114,8 @@ public class MainActivity extends BasicActivity {
         }
 
         postList = new ArrayList<>();
+        search_list = new ArrayList<>();
+
         mainAdapter = new MainAdapter(MainActivity.this, postList);
         mainAdapter.setOnPostListener(onPostListener);
 
@@ -132,12 +141,14 @@ public class MainActivity extends BasicActivity {
                 startActivity(intent);
             }
         });
+        Search_Edit();
     }
 
     @Override
     protected void onResume(){
         super.onResume();
         postsUpdate();
+
     }
 
     OnPostListener onPostListener = new OnPostListener() {
@@ -205,6 +216,7 @@ public class MainActivity extends BasicActivity {
                             postList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+
                                 postList.add(new PostInfo(
                                     document.getData().get("title").toString(),
                                     (ArrayList<String>) document.getData().get("contents"),
@@ -241,7 +253,38 @@ public class MainActivity extends BasicActivity {
                 });
         }
     }
+    public void Search_Edit(){
+        search_edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String searchText = search_edit.getText().toString();
+                search_list.clear();
+
+                if(searchText.equals("")){
+                    mainAdapter.setMainAdapter(MainActivity.this,postList);
+                }
+                else {
+                    // 검색 단어를 포함하는지 확인
+                    for (int a = 0; a < postList.size(); a++) {
+                        if (postList.get(a).getTitle().toLowerCase().contains(searchText.toLowerCase())) {
+                            search_list.add(postList.get(a));
+                        }
+                        mainAdapter.setMainAdapter(MainActivity.this, search_list);
+                    }
+                }
+            }
+        });
+    }
     private void mystartActivity(Class c, PostInfo postInfo) {
         Intent intent = new Intent(this, c);
         intent.putExtra("postInfo", postInfo);

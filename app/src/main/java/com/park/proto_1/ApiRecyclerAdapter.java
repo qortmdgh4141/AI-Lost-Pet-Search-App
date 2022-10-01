@@ -45,7 +45,7 @@ public class ApiRecyclerAdapter extends RecyclerView.Adapter<ApiRecyclerAdapter.
     }
 
     public void addItem(Row row) {
-        rowList.add(row);
+       rowList.add(row);
     }
 
     public void clear(){
@@ -84,6 +84,9 @@ public class ApiRecyclerAdapter extends RecyclerView.Adapter<ApiRecyclerAdapter.
             Glide.with(itemView).load(imgURL).into(imageView1);
         }
     }
-
+    public void setItems(ArrayList<Row> SearchItem){
+        rowList = SearchItem;
+        notifyDataSetChanged();
+    }
 
 }

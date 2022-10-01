@@ -408,7 +408,7 @@ public class WritePostActivity extends BasicActivity{
                 if(task.isSuccessful()){
                     DocumentSnapshot documentSnapshot = task.getResult();
                     Object point = documentSnapshot.getData().get("point");
-                    pointText.setText("잔여 포인트: " + point.toString() + "point");
+                    pointText.setText("잔여 포인트: " + point.toString() + "point" + "    게시글 작성시 +500point");
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

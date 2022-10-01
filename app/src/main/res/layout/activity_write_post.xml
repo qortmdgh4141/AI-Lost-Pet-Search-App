@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#6CCEF4"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
@@ -21,7 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="제목"
+                android:hint="제목을 입력해주세요."
+                android:textColorHint="#6C97DF"
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
 
@@ -29,7 +31,8 @@
                 android:id="@+id/phoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="전화번호 : "
+                android:hint="전화번호를 입력해주세요."
+                android:textColorHint="#6C97DF"
                 android:inputType="phone" />
 
             <LinearLayout
@@ -50,7 +53,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="내용"
                         android:inputType="textMultiLine"
                         android:lines="50"
                         android:maxLines="100"
@@ -71,6 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="#5B6DC6"
                     android:text="사진" />
 
             </LinearLayout>
@@ -79,13 +82,17 @@
                 android:id="@+id/check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="확인" />
+                android:background="#5B6DC6"
+                android:layout_marginTop="10dp"
+                android:text="메인 게시판 추가" />
 
             <Button
                 android:id="@+id/gotoArchive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="보관탭에 추가" />
+                android:background="#5B6DC6"
+                android:layout_marginTop="10dp"
+                android:text="민간보호게시판 추가" />
 
             <TextView
                 android:id="@+id/point"
@@ -93,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:text="포인트: "
                 android:textSize="15dp"
-                android:textColor="@color/teal_200"
+                android:textColor="#4064EC"
                 android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>

@@ -13,9 +13,17 @@
         android:text="보호소 동물 게시판"
         android:gravity="center"
         android:textSize="40dp"
-        android:background="#0B629C"
-        android:textColor="#D6D2D2"
+        android:background="#219fF3"
+        android:textColor="@color/white"
         android:textStyle="bold" />
+    <EditText
+        android:id="@+id/edit_search"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:background="#91C0E6"
+        android:hint="   견종을 검색해주세요."
+        android:inputType="textPersonName" />
     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
         android:id="@+id/search_spinner"
         android:layout_width="match_parent"
@@ -23,7 +31,7 @@
         android:textAlignment="center"
         android:background="#5482B3"
         app:hintText="여기를 클릭하여 지역을 선택해주세요."
-        android:minHeight="48dp"
+        android:minHeight="35dp"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <LinearLayout

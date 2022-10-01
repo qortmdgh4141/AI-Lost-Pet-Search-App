@@ -12,7 +12,7 @@
         android:id="@+id/archive"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_folder_shared_24"
-        android:title="일반 보호중"
+        android:title="민간 보호중"
         app:showAsAction="always" />
     <item
         android:id="@+id/api"

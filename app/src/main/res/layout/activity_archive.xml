@@ -20,8 +20,7 @@
         <ImageView
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:background="@drawable/findog"
             android:backgroundTint="#ffffff"></ImageView>
 
@@ -36,12 +35,24 @@
 
     </RelativeLayout>
 
+    <EditText
+        android:id="@+id/edit_search"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignTop="@+id/header"
+        android:layout_marginTop="60dp"
+        android:background="#91C0E6"
+        android:ems="10"
+        android:hint="  찾으시는 견종을 입력해주세요."
+        android:inputType="textPersonName"
+        android:textColorHint="@color/black" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/header"
-        android:layout_alignBottom="@id/header"
+        android:layout_below="@+id/edit_search"
+        android:layout_alignBottom="@id/edit_search"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="60dp"

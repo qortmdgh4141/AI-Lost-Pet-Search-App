@@ -10,11 +10,14 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 
@@ -38,10 +41,11 @@ public class Api_main extends AppCompatActivity{
     private ApiRecyclerAdapter adapter;
     // 리사이클러뷰
     private RecyclerView recyclerView;
-
+    EditText editText;
     public Spinner spinner;
     private Context mContext = Api_main.this;
-
+    ArrayList<Row> search_list = new ArrayList<>();
+    ArrayList<Row> original_list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,7 @@ public class Api_main extends AppCompatActivity{
         recyclerView = findViewById(R.id.Apirecyclerview);
         spinner = findViewById(R.id.search_spinner);
         adapter = new ApiRecyclerAdapter();
+        editText = findViewById(R.id.edit_search);
         AllReStart();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -71,12 +76,43 @@ public class Api_main extends AppCompatActivity{
                     finish();
                 }, 100);
                 return true;
-            };
+            }
         });
 
 
+    }
 
+    public void EditText(){
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String searchText = editText.getText().toString();
+                search_list.clear();
+
+                if(searchText.equals("")){
+                    adapter.setItems(original_list);
+                }
+                else {
+                    // 검색 단어를 포함하는지 확인
+                    for (int a = 0; a < original_list.size(); a++) {
+                        if (original_list.get(a).getSpeciesNm().toLowerCase().contains(searchText.toLowerCase())) {
+                            search_list.add(original_list.get(a));
+                        }
+                        adapter.setItems(search_list);
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -84,6 +120,7 @@ public class Api_main extends AppCompatActivity{
         super.onStart();
 
         AllReStart();
+        EditText();
     }
 
     public void AllReStart(){
@@ -96,8 +133,6 @@ public class Api_main extends AppCompatActivity{
         Spinnerlist.add("성남시");
         Spinnerlist.add("부천시");
 
-        spinner.setAdapter(new ArrayAdapter<>(Api_main.this
-                , android.R.layout.simple_spinner_dropdown_item, Spinnerlist));
         spinner.setAdapter(new ArrayAdapter<>(Api_main.this
                 , android.R.layout.simple_spinner_dropdown_item, Spinnerlist));
 
@@ -169,8 +204,8 @@ public class Api_main extends AppCompatActivity{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        adapter.notifyDataSetChanged();
 
+//        EditText();
         recyclerView.setAdapter(adapter);
     }
     public void jsonP(String json) {
@@ -193,9 +228,10 @@ public class Api_main extends AppCompatActivity{
                 row.setColorNm(RowObj.getString("COLOR_NM"));
                 row.setShterNm(RowObj.getString("SHTER_NM"));
                 row.setThumbImageCours(RowObj.getString("THUMB_IMAGE_COURS"));
-
+                original_list.add(row);
                 adapter.addItem(row);
-                adapter.notifyDataSetChanged();
+
+//                adapter.notifyDataSetChanged();
 
             }
 

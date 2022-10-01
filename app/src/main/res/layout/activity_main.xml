@@ -35,13 +35,23 @@
 
 
     </RelativeLayout>
-
+    <EditText
+        android:id="@+id/edit_search"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignTop="@+id/header"
+        android:layout_marginTop="60dp"
+        android:background="#91C0E6"
+        android:ems="10"
+        android:hint="  찾으시는 견종을 입력해주세요."
+        android:textColorHint="@color/black"
+        android:inputType="textPersonName" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/header"
-        android:layout_alignBottom="@id/header"
+        android:layout_below="@+id/edit_search"
+        android:layout_alignBottom="@id/edit_search"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="60dp"

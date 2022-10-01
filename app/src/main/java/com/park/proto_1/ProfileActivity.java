@@ -28,7 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends BasicActivity {
     private static final String TAG = "ProfileActivity";
     ImageView profileImageV;
     private FirebaseUser user;
