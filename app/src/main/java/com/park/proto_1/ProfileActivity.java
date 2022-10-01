@@ -79,10 +79,13 @@ public class ProfileActivity extends AppCompatActivity {
                     int itemId = item.getItemId();
                     if (itemId == R.id.main) {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    } else if (itemId == R.id.api) {
+                    }else if (itemId == R.id.api) {
                         startActivity(new Intent(getApplicationContext(), Api_main.class));
                     }else if (itemId == R.id.profile) {
+
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    }else if (itemId == R.id.archive) {
+                        startActivity(new Intent(getApplicationContext(), ArchiveActivity.class));
                     }
                     finish();
                 }, 100);
@@ -145,6 +148,8 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.e(TAG,"Faild", e);
+                startToast("회원정보를 입력하세요.");
+                startActivity(new Intent(getApplicationContext(), MemberInitActivity.class));
             }
         });
     }
