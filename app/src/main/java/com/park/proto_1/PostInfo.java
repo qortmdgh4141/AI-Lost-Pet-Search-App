@@ -18,6 +18,7 @@ public class PostInfo implements Serializable {
         this.title = title;
         this.contents = contents;
         this.publisher = publisher;
+        this.phoneNumber = phoneNumber;
         this.createdAt = createdAt;
         this.id = id;
     }

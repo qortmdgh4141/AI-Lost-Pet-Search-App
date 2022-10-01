@@ -86,6 +86,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         TextView titleTextView = cardView.findViewById(R.id.titleTextView);
         titleTextView.setText(mDataSet.get(position).getTitle());
 
+//        TextView phoneNumber = cardView.findViewById(R.id.phoneNumber);
+//        phoneNumber.setText(mDataSet.get(position).getPhoneNumber());
+
         TextView createdAtTextView = cardView.findViewById(R.id.createAtTextView);
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(mDataSet.get(position).getCreatedAt()));
 
