@@ -93,7 +93,7 @@ public class WritePostActivity extends BasicActivity{
 
         pointText = findViewById(R.id.point);
 
-        //NowPoint();
+        NowPoint();
     }
 
     @Override
@@ -355,27 +355,27 @@ public class WritePostActivity extends BasicActivity{
         startActivityForResult(intent, requestCode);
     }
 
-//    private void NowPoint(){
-//        FirebaseFirestore pointDb = FirebaseFirestore.getInstance();
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//        DocumentReference DR = pointDb.collection("users").document(user.getUid());
-//        DR.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if(task.isSuccessful()){
-//                    DocumentSnapshot documentSnapshot = task.getResult();
-//                    Object point = documentSnapshot.getData().get("point");
-//                    pointText.setText("잔여 포인트: " + point.toString() + "point");
-//                }
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.e(TAG,"Faild", e);
-//            }
-//        });
-//    }
+    private void NowPoint(){
+        FirebaseFirestore pointDb = FirebaseFirestore.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        DocumentReference DR = pointDb.collection("users").document(user.getUid());
+        DR.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    Object point = documentSnapshot.getData().get("point");
+                    pointText.setText("잔여 포인트: " + point.toString() + "point");
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(TAG,"Faild", e);
+            }
+        });
+    }
     private void PlusPoint(){
         FirebaseFirestore pointDb = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();

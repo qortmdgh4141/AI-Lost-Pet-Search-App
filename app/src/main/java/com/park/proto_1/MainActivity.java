@@ -79,7 +79,10 @@ public class MainActivity extends BasicActivity {
 
         if(firebaseUser == null) {
             mystartActivity(SignUpActivity.class);
-        }else{
+        }else if(firebaseUser.getMetadata().toString() == null){
+            mystartActivity(MemberInitActivity.class);
+        }
+        else{
             firebaseFirestore = FirebaseFirestore.getInstance();
             DocumentReference documentReference = firebaseFirestore.collection("users").document(firebaseUser.getUid());
             documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

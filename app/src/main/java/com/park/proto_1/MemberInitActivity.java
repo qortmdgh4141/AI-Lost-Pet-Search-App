@@ -57,10 +57,9 @@ public class MemberInitActivity extends BasicActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+    public void onBackPressed(){
+        //super.onBackPressed();
+        finishAffinity();
     }
 
     @Override
