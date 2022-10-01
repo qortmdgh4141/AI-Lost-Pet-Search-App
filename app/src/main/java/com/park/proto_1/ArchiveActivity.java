@@ -1,11 +1,10 @@
 package com.park.proto_1;
 
-import static com.park.proto_1.Util.isStorageUrl;
+import static com.park.proto_1.Util.isArchiveStorageUrl;
 import static com.park.proto_1.Util.showToast;
 import static com.park.proto_1.Util.storageUrlToName;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -145,7 +144,7 @@ public class ArchiveActivity extends BasicActivity {
             ArrayList<String> contentsList = postList.get(position).getContents();
             for(int i=0; i<contentsList.size(); i++){
                 String contents = contentsList.get(i);
-                if(isStorageUrl(contents)) {
+                if(isArchiveStorageUrl(contents)) {
                     successCount++;
                     StorageReference desertRef = storageRef.child("archive/" + id + "/" + storageUrlToName(contents));
                     desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -168,7 +167,6 @@ public class ArchiveActivity extends BasicActivity {
         @Override
         public void onModify(int position) {
             mystartActivity(WritePostActivity.class, postList.get(position));
-
         }
     };
 

@@ -1,5 +1,6 @@
 package com.park.proto_1;
 
+import static com.park.proto_1.Util.isArchiveStorageUrl;
 import static com.park.proto_1.Util.isStorageUrl;
 import static com.park.proto_1.Util.showToast;
 import static com.park.proto_1.Util.storageUrlToName;
@@ -9,7 +10,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -288,7 +288,7 @@ public class WritePostActivity extends BasicActivity{
                         if(text.length() > 0){
                             contentsList.add(text);
                         }
-                    }else if(!isStorageUrl(pathList.get(pathCount))) {
+                    }else if(!isArchiveStorageUrl(pathList.get(pathCount))) {
                         String path = pathList.get(pathCount);
                         okCount++;
                         contentsList.add(path);
@@ -359,7 +359,7 @@ public class WritePostActivity extends BasicActivity{
             ArrayList<String> contentsList = postInfo.getContents();
             for(int i=0; i<contentsList.size(); i++){
                 String contents = contentsList.get(i);
-                if(Patterns.WEB_URL.matcher(contents).matches() && contents.contains("https://firebasestorage.googleapis.com/v0/b/find-dog-25917.appspot.com/o/archive")) {
+                if(isStorageUrl(contents)) {
                     pathList.add(contents);
 
                     ContentsItemView contentsItemView = new ContentsItemView(this);
@@ -376,7 +376,7 @@ public class WritePostActivity extends BasicActivity{
                     contentsItemView.setOnFocusChangeListener(onFocusChangeListener);
                     if (i < contentsList.size() - 1) {
                         String nextContents = contentsList.get(i + 1);
-                        if (!Patterns.WEB_URL.matcher(contents).matches() && contents.contains("https://firebasestorage.googleapis.com/v0/b/find-dog-25917.appspot.com/o/archive")) {
+                        if (!isStorageUrl(nextContents)) {
                             contentsItemView.setText(nextContents);
                         }
                     }

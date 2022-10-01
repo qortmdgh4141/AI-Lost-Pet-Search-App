@@ -1,6 +1,6 @@
 package com.park.proto_1;
 
-import static com.park.proto_1.Util.isStorageUrl;
+import static com.park.proto_1.Util.isArchiveStorageUrl;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -64,7 +64,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, PostActivity.class);
+                Intent intent = new Intent(activity, ArchivePostActivity.class);
                 intent.putExtra("postInfo", mDataSet.get(archiveViewHolder.getAdapterPosition()));
                 activity.startActivity(intent);
             }
@@ -107,7 +107,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
                     break;
                 }
                 String contents = contentsList.get(i);
-                if (isStorageUrl(contents)) {
+                if (isArchiveStorageUrl(contents)) {
                     ImageView imageView = new ImageView(activity);
                     imageView.setLayoutParams(layoutParams);
                     imageView.setAdjustViewBounds(true);
