@@ -209,6 +209,7 @@ public class MainActivity extends BasicActivity {
                                     document.getData().get("title").toString(),
                                     (ArrayList<String>) document.getData().get("contents"),
                                     document.getData().get("publisher").toString(),
+                                    document.getData().get("phoneNumber").toString(),
                                     new Date(document.getDate("createdAt").getTime()),
                                     document.getId()));
                             }
