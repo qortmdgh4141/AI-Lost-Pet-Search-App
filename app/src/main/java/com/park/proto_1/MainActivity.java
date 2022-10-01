@@ -7,12 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,6 +29,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +39,11 @@ public class MainActivity extends BasicActivity {
     private static final String TAG = "MainActivity";
     private FirebaseUser firebaseUser;
     private FirebaseFirestore firebaseFirestore;
-    private RecyclerView recyclerView;
+    private StorageReference storageRef;
+    private MainAdapter mainAdapter;
+    private ArrayList<PostInfo> postList;
+    private Util util;
+    private int successCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +74,8 @@ public class MainActivity extends BasicActivity {
         });
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
 
         if(firebaseUser == null) {
             mystartActivity(SignUpActivity.class);
@@ -92,15 +103,24 @@ public class MainActivity extends BasicActivity {
 
         }
 
-        recyclerView = findViewById(R.id.recyclerView1);
+        util = new Util(this);
+        postList = new ArrayList<>();
+        mainAdapter = new MainAdapter(MainActivity.this, postList);
+        mainAdapter.setOnPostListener(onPostListener);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView1);
+
+        findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        recyclerView.setAdapter(mainAdapter);
+
         FloatingActionButton floatingActionButton;
         floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.bringToFront();
         findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
 
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
         ImageButton mapBtn = (ImageButton) findViewById(R.id.mapBtn);
         mapBtn.setOnClickListener(new View.OnClickListener(){
@@ -113,40 +133,57 @@ public class MainActivity extends BasicActivity {
 
     }
 
+    @Override
     protected void onResume(){
         super.onResume();
+        postsUpdate();
+    }
 
-        if(firebaseUser != null) {
-            CollectionReference collectionReference = firebaseFirestore.collection("posts");
-            collectionReference.orderBy("createdAt", Query.Direction.DESCENDING).get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    OnPostListener onPostListener = new OnPostListener() {
+        @Override
+        public void onDelete(int position) {
+            final String id = postList.get(position).getId();
+            ArrayList<String> contentsList = postList.get(position).getContents();
+            for(int i=0; i<contentsList.size(); i++){
+                String contents = contentsList.get(i);
+                if(Patterns.WEB_URL.matcher(contents).matches() && contents.contains("https://firebasestorage.googleapis.com/v0/b/find-dog-25917.appspot.com/o/posts")) {
+                    successCount++;
+                    String[] list1 = contents.split("\\.");
+                    String[] list2 = list1[0].split("%2F");
+                    String name = list2[list2.length-1];
+                    StorageReference desertRef = storageRef.child("posts/"+id+"/"+name);
+                    desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                ArrayList<PostInfo > postList = new ArrayList<>();
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    Log.d(TAG, document.getId() + " => " + document.getData());
-                                    postList.add(new PostInfo(
-                                            document.getData().get("title").toString(),
-                                            (ArrayList<String>)document.getData().get("contents"),
-                                            document.getData().get("publisher").toString(),
-                                            new Date(document.getDate("createdAt").getTime())));
-                                }
-
-                                RecyclerView.Adapter mAdapter = new MainAdapter(MainActivity.this, postList);
-                                recyclerView.setAdapter(mAdapter);
-                            } else {
-                                Log.d(TAG, "Error getting documents: ", task.getException());
-                            }
+                        public void onSuccess(Void unused) {
+                            successCount--;
+                            storeUploader(id);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            util.showToast("에러발생");
                         }
                     });
+                }
+            }
+            storeUploader(id);
         }
-    }
+
+        @Override
+        public void onModify(int position) {
+            mystartActivity(WritePostActivity.class, postList.get(position));
+
+        }
+    };
+
+
+
+
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            switch (view.getId()){
+            switch (view.getId()) {
 //                case R.id.logoutButton:
 //                    FirebaseAuth.getInstance().signOut();
 //                    mystartActivity(SignUpActivity.class);
@@ -159,8 +196,62 @@ public class MainActivity extends BasicActivity {
         }
     };
 
+    private void postsUpdate() {
+        if (firebaseUser != null) {
+            CollectionReference collectionReference = firebaseFirestore.collection("posts");
+            collectionReference.orderBy("createdAt", Query.Direction.DESCENDING).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            postList.clear();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                postList.add(new PostInfo(
+                                    document.getData().get("title").toString(),
+                                    (ArrayList<String>) document.getData().get("contents"),
+                                    document.getData().get("publisher").toString(),
+                                    new Date(document.getDate("createdAt").getTime()),
+                                    document.getId()));
+                            }
+                            mainAdapter.notifyDataSetChanged();
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        }
+    }
+
+    private void storeUploader(String id) {
+        if (successCount == 0) {
+            firebaseFirestore.collection("posts").document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        util.showToast("게시글을 삭제하였습니다.");
+                        postsUpdate();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        util.showToast("게시글을 삭제하지 못하였습니다.");
+                    }
+                });
+        }
+    }
+
+    private void mystartActivity(Class c, PostInfo postInfo) {
+        Intent intent = new Intent(this, c);
+        intent.putExtra("postInfo", postInfo);
+        startActivity(intent);
+    }
+
     private void mystartActivity(Class c) {
         Intent intent = new Intent(this, c);
         startActivity(intent);
     }
+
 }
