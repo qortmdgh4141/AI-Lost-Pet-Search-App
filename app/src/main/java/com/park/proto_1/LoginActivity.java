@@ -2,6 +2,8 @@ package com.park.proto_1;
 
 import static android.content.ContentValues.TAG;
 
+import static com.park.proto_1.Util.showToast;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,24 +58,20 @@ public class LoginActivity extends BasicActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                startToast("로그인 성공");
+                                showToast(LoginActivity.this, "로그인에 성공");
                                 mystartActivity(MainActivity.class);
                                 finish();
                             } else {
                                 if(task.getException() != null){
-                                   startToast(task.getException().toString());
+                                    showToast(LoginActivity.this, task.getException().toString());
                                 }
                             }
                         }
                     });
         } else {
-            startToast("이메일 또는 비밀번호를 확인해 주세요");
+            showToast(LoginActivity.this, "이메일 또는 비밀번호를 입력해 주세요.");
         }
 
-    }
-
-    private void startToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     private void mystartActivity(Class c) {

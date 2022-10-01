@@ -1,5 +1,9 @@
 package com.park.proto_1;
 
+import static com.park.proto_1.Util.isStorageUrl;
+import static com.park.proto_1.Util.showToast;
+import static com.park.proto_1.Util.storageUrlToName;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -105,7 +109,6 @@ public class MainActivity extends BasicActivity {
             });
         }
 
-        util = new Util(this);
         postList = new ArrayList<>();
         mainAdapter = new MainAdapter(MainActivity.this, postList);
         mainAdapter.setOnPostListener(onPostListener);
@@ -147,12 +150,9 @@ public class MainActivity extends BasicActivity {
             ArrayList<String> contentsList = postList.get(position).getContents();
             for(int i=0; i<contentsList.size(); i++){
                 String contents = contentsList.get(i);
-                if(Patterns.WEB_URL.matcher(contents).matches() && contents.contains("https://firebasestorage.googleapis.com/v0/b/find-dog-25917.appspot.com/o/posts")) {
+                if(isStorageUrl(contents)) {
                     successCount++;
-                    String[] list1 = contents.split("\\?");
-                    String[] list2 = list1[0].split("%2F");
-                    String name = list2[list2.length-1];
-                    StorageReference desertRef = storageRef.child("posts/"+id+"/"+name);
+                    StorageReference desertRef = storageRef.child("posts/" + id + "/" + storageUrlToName(contents));
                     desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
@@ -162,7 +162,7 @@ public class MainActivity extends BasicActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            util.showToast("에러발생");
+                            showToast(MainActivity.this, "에러발생");
                         }
                     });
                 }
@@ -231,14 +231,14 @@ public class MainActivity extends BasicActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        util.showToast("게시글을 삭제하였습니다.");
+                        showToast(MainActivity.this, "게시글을 삭제하였습니다.");
                         postsUpdate();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        util.showToast("게시글을 삭제하지 못하였습니다.");
+                        showToast(MainActivity.this, "게시글을 삭제하지 못하였습니다.");
                     }
                 });
         }

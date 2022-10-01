@@ -1,5 +1,7 @@
 package com.park.proto_1;
 
+import static com.park.proto_1.Util.isStorageUrl;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -66,7 +68,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(activity, PostActivity.class);
+                intent.putExtra("postInfo", mDataSet.get(mainViewHolder.getAdapterPosition()));
+                activity.startActivity(intent);
             }
         });
 
@@ -107,7 +111,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
                     break;
                 }
                 String contents = contentsList.get(i);
-                if (Patterns.WEB_URL.matcher(contents).matches() && contents.contains("https://firebasestorage.googleapis.com/v0/b/find-dog-25917.appspot.com/o/posts")) {
+                if (isStorageUrl(contents)) {
                     ImageView imageView = new ImageView(activity);
                     imageView.setLayoutParams(layoutParams);
                     imageView.setAdjustViewBounds(true);

@@ -1,5 +1,7 @@
 package com.park.proto_1;
 
+import static com.park.proto_1.Util.showToast;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -35,7 +37,7 @@ public class GalleryActivity extends BasicActivity {
             }
             else{
                 ActivityCompat.requestPermissions(GalleryActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
-                startToast("권한을 허용해 주세요");
+                showToast(GalleryActivity.this, "권한을 허용해 주세요.");
             }
         }else{
             recycleInit();
@@ -52,7 +54,7 @@ public class GalleryActivity extends BasicActivity {
                     recycleInit();
                 } else {
                     finish();
-                    startToast("권한을 허용해 주세요");
+                    showToast(GalleryActivity.this, "권한을 허용해 주세요.");
                 }
         }
     }
@@ -85,9 +87,5 @@ public class GalleryActivity extends BasicActivity {
             listOfAllImages.add(PathOfImage);
         }
         return listOfAllImages;
-    }
-
-    private void startToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

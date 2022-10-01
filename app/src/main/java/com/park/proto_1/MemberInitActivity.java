@@ -1,22 +1,18 @@
 package com.park.proto_1;
 
-import android.Manifest;
+import static com.park.proto_1.Util.showToast;
+
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
@@ -137,7 +133,7 @@ public class MemberInitActivity extends BasicActivity {
                                 MemberInfo memberInfo = new MemberInfo(name, phone, birthday, address, downloadUri.toString(), point);
                                 uploader(memberInfo);
                             } else {
-                                startToast("회원정보를 전송실패.");
+                                showToast(MemberInitActivity.this, "회원정보 전송실패.");
                             }
                         }
                     });
@@ -146,7 +142,7 @@ public class MemberInitActivity extends BasicActivity {
                 }
             }
         } else {
-            startToast("회원정보를 입력해주세요.");
+            showToast(MemberInitActivity.this, "회원정보를 입력해주세요.");
         }
     }
 
@@ -154,21 +150,17 @@ public class MemberInitActivity extends BasicActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(user.getUid()).set(memberInfo)
                 .addOnSuccessListener(aVoid -> {
-                    startToast("회원정보 등록 완료");
+                    showToast(MemberInitActivity.this, "회원정보 등록완료.");
                     mystartActivity(MainActivity.class);
                     finish();
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        startToast("회원정보 등록 실패");
+                        showToast(MemberInitActivity.this, "회원정보 등록실패.");
                         Log.w(TAG, "Error writing document", e);
                     }
                 });
-    }
-
-    private void startToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     private void mystartActivity(Class c) {

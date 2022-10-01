@@ -1,12 +1,11 @@
 package com.park.proto_1;
 
+import static com.park.proto_1.Util.showToast;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -59,26 +58,22 @@ public class SignUpActivity extends BasicActivity {
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                startToast("회원가입 완료");
+                                showToast(SignUpActivity.this, "회원가입에 완료.");
                                 mystartActivity(MainActivity.class);
                             } else {
                                 if(task.getException() != null) {
-                                    startToast(task.getException().toString());
+                                    showToast(SignUpActivity.this, task.getException().toString());
                                 }
                             }
                         });
             } else{
-                startToast("비밀번호가 일치하지 않습니다.");
+                showToast(SignUpActivity.this, "비밀번호가 일치하지 않습니다.");
             }
         } else {
-            startToast("이메일 또는 비밀번호를 확인해 주세요");
+            showToast(SignUpActivity.this, "이메일 또는 비밀번호를 입력해 주세요.");
         }
 
     }
-    private void startToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
     private void mystartActivity(Class c) {
         Intent intent = new Intent(this, c);
         intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);

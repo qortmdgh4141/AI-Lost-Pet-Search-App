@@ -1,20 +1,16 @@
 package com.park.proto_1;
 
-import android.content.Intent;
+import static com.park.proto_1.Util.showToast;
+
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class PasswordResetActivity extends BasicActivity {
     private FirebaseAuth mAuth;
@@ -47,17 +43,13 @@ public class PasswordResetActivity extends BasicActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                startToast("이메일을 보냈습니다.");
+                                showToast(PasswordResetActivity.this, "이메일을 보냈습니다.");
                             }
                         }
                     });
         } else {
-            startToast("이메일을 입력해 주세요");
+            showToast(PasswordResetActivity.this, "이메일을 입력해 주세요.");
         }
     }
-    private void startToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
 }
 
