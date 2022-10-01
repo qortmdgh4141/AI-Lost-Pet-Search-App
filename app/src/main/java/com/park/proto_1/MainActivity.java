@@ -100,7 +100,6 @@ public class MainActivity extends BasicActivity {
                     }
                 }
             });
-
         }
 
         util = new Util(this);
@@ -130,7 +129,6 @@ public class MainActivity extends BasicActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -148,7 +146,7 @@ public class MainActivity extends BasicActivity {
                 String contents = contentsList.get(i);
                 if(Patterns.WEB_URL.matcher(contents).matches() && contents.contains("https://firebasestorage.googleapis.com/v0/b/find-dog-25917.appspot.com/o/posts")) {
                     successCount++;
-                    String[] list1 = contents.split("\\.");
+                    String[] list1 = contents.split("\\?");
                     String[] list2 = list1[0].split("%2F");
                     String name = list2[list2.length-1];
                     StorageReference desertRef = storageRef.child("posts/"+id+"/"+name);
