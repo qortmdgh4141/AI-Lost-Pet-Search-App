@@ -113,8 +113,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         TextView titleTextView = cardView.findViewById(R.id.titleTextView);
         titleTextView.setText(mDataSet.get(position).getTitle());
 
-//        TextView phoneNumber = cardView.findViewById(R.id.phoneNumber);
-//        phoneNumber.setText(mDataSet.get(position).getPhoneNumber());
+        ImageView imageView = cardView.findViewById(R.id.PostImageView);
 
         TextView createdAtTextView = cardView.findViewById(R.id.createAtTextView);
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(mDataSet.get(position).getCreatedAt()));
@@ -138,11 +137,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
                 }
                 String contents = contentsList.get(i);
                 if (isStorageUrl(contents)) {
-                    ImageView imageView = new ImageView(activity);
-                    imageView.setLayoutParams(layoutParams);
-                    imageView.setAdjustViewBounds(true);
-                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    contentsLayout.addView(imageView);
                     Glide.with(activity).load(contents).override(1000).thumbnail(0.1f).into(imageView);
                 } else {
                     TextView textView = new TextView(activity);

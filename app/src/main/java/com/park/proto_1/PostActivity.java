@@ -28,7 +28,7 @@ public class PostActivity extends BasicActivity {
         titleTextView.setText(postInfo.getTitle());
 
         TextView phoneNumber = findViewById(R.id.phoneNumber);
-        phoneNumber.setText(postInfo.getPhoneNumber());
+        phoneNumber.setText("작성자 전화번호: " + postInfo.getPhoneNumber());
 
         TextView createdAtTextView = findViewById(R.id.createAtTextView);
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(postInfo.getCreatedAt()));

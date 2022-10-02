@@ -107,8 +107,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         CardView cardView = holder.cardView;
         TextView titleTextView = cardView.findViewById(R.id.titleTextView);
         titleTextView.setText(mDataSet.get(position).getTitle());
-        TextView phonT = cardView.findViewById(R.id.phoneNumber);
-        phonT.setText("전화번호: " + mDataSet.get(position).getPhoneNumber());
+        ImageView imageView = cardView.findViewById(R.id.PostImageView);
 
         TextView createdAtTextView = cardView.findViewById(R.id.createAtTextView);
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(mDataSet.get(position).getCreatedAt()));
@@ -116,6 +115,7 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
         LinearLayout contentsLayout = cardView.findViewById(R.id.contentsLayout);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ArrayList<String> contentsList = mDataSet.get(position).getContents();
+
 
 
 
@@ -133,11 +133,6 @@ public class ArchiveAdapter extends RecyclerView.Adapter<ArchiveAdapter.ArchiveV
                 }
                 String contents = contentsList.get(i);
                 if (isArchiveStorageUrl(contents)) {
-                    ImageView imageView = new ImageView(activity);
-                    imageView.setLayoutParams(layoutParams);
-                    imageView.setAdjustViewBounds(true);
-                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    contentsLayout.addView(imageView);
                     Glide.with(activity).load(contents).override(1000).thumbnail(0.1f).into(imageView);
                 } else {
                     TextView textView = new TextView(activity);

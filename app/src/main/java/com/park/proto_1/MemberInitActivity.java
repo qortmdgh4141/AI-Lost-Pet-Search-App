@@ -149,7 +149,7 @@ public class MemberInitActivity extends BasicActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(user.getUid()).set(memberInfo)
                 .addOnSuccessListener(aVoid -> {
-                    showToast(MemberInitActivity.this, "회원정보 등록완료.");
+                    showToast(MemberInitActivity.this, "회원정보 등록완료. 5000 point 적립!");
                     mystartActivity(MainActivity.class);
                     finish();
                 })
