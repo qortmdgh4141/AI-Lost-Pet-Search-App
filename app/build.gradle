@@ -72,4 +72,8 @@ dependencies {
     // Skip this if you don't want to use integration libraries or configure Glide.
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
+    implementation 'org.tensorflow:tensorflow-lite:2.3.0'
+    //implementation 'org.tensorflow:tensorflow-lite-gpu:2.4.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.3.0'
+
 }

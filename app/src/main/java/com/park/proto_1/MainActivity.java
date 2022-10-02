@@ -137,7 +137,8 @@ public class MainActivity extends BasicActivity {
         mapBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), GPSMapActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), GPSMapActivity.class);
+                Intent intent = new Intent(getApplicationContext(), yolo_MainActivity.class);
                 startActivity(intent);
             }
         });
