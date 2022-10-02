@@ -27,6 +27,8 @@ import com.park.proto_1.detection.tflite.Classifier;
 import com.park.proto_1.detection.tflite.YoloV5Classifier;
 import com.park.proto_1.detection.tracking.MultiBoxTracker;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -80,9 +82,16 @@ public class yolo_MainActivity extends AppCompatActivity {
     }
 
     private Bitmap convert(String filPath){
-        Bitmap bitmap;
-        bitmap = BitmapFactory.decodeFile(filPath);
-        return bitmap;
+        Bitmap bitmap=null;
+        try {
+            File f= new File(filPath);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, options);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap ;
     }
 
     private static final Logger LOGGER = new Logger();
