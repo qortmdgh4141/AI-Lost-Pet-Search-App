@@ -81,8 +81,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder dlg = new AlertDialog.Builder(view.getContext());
-                dlg.setTitle("게시글 열람 알림"); //제목
-                dlg.setMessage("게시글 상세보기시 100point 차감됩니다."); // 메시지
+                dlg.setTitle("일반 게시글 열람 알림"); //제목
+                dlg.setMessage("게시글 상세보기시 500point 차감됩니다."); // 메시지
 //                dlg.setIcon(R.drawable.deum); // 아이콘 설정
                 dlg.setPositiveButton("확인",new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int which) {
@@ -183,6 +183,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         DocumentReference DR = pointDb.collection("users").document(user.getUid());
-        DR.update("point", FieldValue.increment(-100));
+        DR.update("point", FieldValue.increment(-500));
     }
 }

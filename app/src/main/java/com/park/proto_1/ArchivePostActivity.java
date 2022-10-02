@@ -2,9 +2,12 @@ package com.park.proto_1;
 
 import static com.park.proto_1.Util.isArchiveStorageUrl;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,8 +29,9 @@ public class ArchivePostActivity extends BasicActivity {
 
         TextView titleTextView = findViewById(R.id.titleTextView);
         titleTextView.setText(postInfo.getTitle());
-
         TextView phoneNumber = findViewById(R.id.phoneNumber);
+        ImageView imageView = findViewById(R.id.contentsImageView);
+
         phoneNumber.setText("작성자 전화번호: " + postInfo.getPhoneNumber());
 
         TextView createdAtTextView = findViewById(R.id.createAtTextView);
@@ -43,11 +47,11 @@ public class ArchivePostActivity extends BasicActivity {
             for (int i = 0; i < contentsList.size(); i++) {
                 String contents = contentsList.get(i);
                 if (isArchiveStorageUrl(contents)) {
-                    ImageView imageView = new ImageView(this);
-                    imageView.setLayoutParams(layoutParams);
-                    imageView.setAdjustViewBounds(true);
-                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    contentsLayout.addView(imageView);
+//                    ImageView imageView = new ImageView(this);
+//                    imageView.setLayoutParams(layoutParams);
+//                    imageView.setAdjustViewBounds(true);
+//                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//                    contentsLayout.addView(imageView);
                     Glide.with(this).load(contents).override(1000).thumbnail(0.1f).into(imageView);
                 } else {
                     TextView textView = new TextView(this);

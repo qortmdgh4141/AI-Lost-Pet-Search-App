@@ -156,7 +156,7 @@ public class WritePostActivity extends BasicActivity{
                     break;
                 case R.id.gotoArchive:
                     archiveUpdate();
-                    PlusPoint();
+                    PlusPointArchive();
                     break;
                 case R.id.buttonsBackgroundLayout:
                     if(buttonsBackgroundLayout.getVisibility()==View.VISIBLE){
@@ -424,5 +424,12 @@ public class WritePostActivity extends BasicActivity{
 
         DocumentReference DR = pointDb.collection("users").document(user.getUid());
         DR.update("point", FieldValue.increment(500));
+    }
+    private void PlusPointArchive(){
+        FirebaseFirestore pointDb = FirebaseFirestore.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        DocumentReference DR = pointDb.collection("users").document(user.getUid());
+        DR.update("point", FieldValue.increment(50000));
     }
 }

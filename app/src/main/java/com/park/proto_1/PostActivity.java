@@ -45,7 +45,7 @@ public class PostActivity extends BasicActivity {
                 String contents = contentsList.get(i);
                 if (isStorageUrl(contents)) {
 
-                    Glide.with(this).load(contents).override(1000).thumbnail(0.1f).into(imageView);
+                    Glide.with(this).load(contents).override(1000).into(imageView);
                 } else {
                     TextView textView = new TextView(this);
                     textView.setLayoutParams(layoutParams);
