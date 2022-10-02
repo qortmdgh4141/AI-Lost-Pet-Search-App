@@ -6,6 +6,7 @@ import static com.park.proto_1.Util.showToast;
 import static com.park.proto_1.Util.storageUrlToName;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -59,10 +60,15 @@ public class WritePostActivity extends BasicActivity{
     private PostInfo postInfo;
     private TextView pointText;
 
+    public static Context con;
+    public String imagePath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_post);
+
+        con = this;
 
         parent = findViewById(R.id.contentsLayout);
         buttonsBackgroundLayout = findViewById(R.id.buttonsBackgroundLayout);
@@ -73,6 +79,7 @@ public class WritePostActivity extends BasicActivity{
 
         findViewById(R.id.check).setOnClickListener(onClickListener);
         findViewById(R.id.shot).setOnClickListener(onClickListener);
+        findViewById(R.id.detectbtn).setOnClickListener(onClickListener);
         findViewById(R.id.gotoArchive).setOnClickListener(onClickListener);
         findViewById(R.id.imageModify).setOnClickListener(onClickListener);
         findViewById(R.id.delete).setOnClickListener(onClickListener);
@@ -107,6 +114,7 @@ public class WritePostActivity extends BasicActivity{
             case 0:
                 if (resultCode == Activity.RESULT_OK) {
                     String profilePath = data.getStringExtra("profilePath");
+                    imagePath = profilePath;
                     pathList.add(profilePath);
 
                     ContentsItemView contentsItemView = new ContentsItemView(this);
@@ -153,6 +161,9 @@ public class WritePostActivity extends BasicActivity{
                     break;
                 case R.id.shot:
                     mystartActivity(GalleryActivity.class, 0);
+                    break;
+                case R.id.detectbtn:
+                    mystartActivity(yolo_MainActivity.class);
                     break;
                 case R.id.gotoArchive:
                     archiveUpdate();
@@ -395,6 +406,12 @@ public class WritePostActivity extends BasicActivity{
     private void mystartActivity(Class c, int requestCode) {
         Intent intent = new Intent(this, c);
         startActivityForResult(intent, requestCode);
+    }
+
+    private void mystartActivity(Class c) {
+        Intent intent = new Intent(this, c);
+        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     private void NowPoint(){

@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -35,12 +36,16 @@ public class yolo_MainActivity extends AppCompatActivity {
     public static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.3f;
     private static final String TAG = "Yolo_Activity";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.yolo_activity_main);
         detectButton = findViewById(R.id.detectButton);
         imageView = findViewById(R.id.imageView);
+
+        String imagePath1 = ((WritePostActivity)WritePostActivity.con).imagePath;
 
         detectButton.setOnClickListener(v -> {
             Handler handler = new Handler();
@@ -57,7 +62,9 @@ public class yolo_MainActivity extends AppCompatActivity {
 
         });
 
-        this.sourceBitmap = Utils.getBitmapFromAsset(yolo_MainActivity.this, "b.jpg");
+        //this.sourceBitmap = Utils.getBitmapFromAsset(yolo_MainActivity.this, "b.jpg");
+
+        this.sourceBitmap = convert(imagePath1);
 
         this.cropBitmap = Utils.processBitmap(sourceBitmap, TF_OD_API_INPUT_SIZE);
 
@@ -70,6 +77,12 @@ public class yolo_MainActivity extends AppCompatActivity {
         System.err.println(Double.parseDouble(configurationInfo.getGlEsVersion()));
         System.err.println(configurationInfo.reqGlEsVersion >= 0x30000);
         System.err.println(String.format("%X", configurationInfo.reqGlEsVersion));
+    }
+
+    private Bitmap convert(String filPath){
+        Bitmap bitmap;
+        bitmap = BitmapFactory.decodeFile(filPath);
+        return bitmap;
     }
 
     private static final Logger LOGGER = new Logger();
