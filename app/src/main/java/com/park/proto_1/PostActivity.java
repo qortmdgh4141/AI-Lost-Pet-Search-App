@@ -30,6 +30,7 @@ public class PostActivity extends BasicActivity {
         TextView phoneNumber = findViewById(R.id.phoneNumber);
         phoneNumber.setText("작성자 전화번호: " + postInfo.getPhoneNumber());
 
+        ImageView imageView = findViewById(R.id.contentsImageView);
         TextView createdAtTextView = findViewById(R.id.createAtTextView);
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(postInfo.getCreatedAt()));
 
@@ -43,11 +44,7 @@ public class PostActivity extends BasicActivity {
             for (int i = 0; i < contentsList.size(); i++) {
                 String contents = contentsList.get(i);
                 if (isStorageUrl(contents)) {
-                    ImageView imageView = new ImageView(this);
-                    imageView.setLayoutParams(layoutParams);
-                    imageView.setAdjustViewBounds(true);
-                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    contentsLayout.addView(imageView);
+
                     Glide.with(this).load(contents).override(1000).thumbnail(0.1f).into(imageView);
                 } else {
                     TextView textView = new TextView(this);
