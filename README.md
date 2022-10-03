@@ -1,4 +1,11 @@
 # 🐕  AI Lost Pet Search App 
+
+Public Data(공공 데이터)
+- AI Hub DataSet : 반려동물 구분을 위한 동물 영상
+--> https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=59
+- Gyeonggi Data Dream DataSet : 경기도 내 유기동물 보호 현황
+--> https://data.gg.go.kr/portal/data/service/selectServicePage.do?page=1&sortColumn=&sortDirection=&infId=UOKOBXSYKT10BAGIDAXZ28522406&infSeq=1&searchWord=%EC%9C%A0%EA%B8%B0+%EB%8F%99%EB%AC%BC+%EB%B3%B4%ED%98%B8+%ED%98%84%ED%99%A9
+
 ⚠️ The project is still in progress... --> planned to be completed around October 
 
 Build a platform to track the location of dogs based on Computer Vision & GPS and organize a system for protecting abandoned dogs between individuals.
