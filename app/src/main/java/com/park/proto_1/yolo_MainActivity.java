@@ -191,7 +191,8 @@ public class yolo_MainActivity extends AppCompatActivity {
                 cropToFrameTransform.mapRect(location);
                 result.setLocation(location);
                 mappedRecognitions.add(result);
-                Log.i(TAG, "Dog_CLass" + class_name);
+
+                Log.i(TAG, "Dog_CLass" + class_name +"디텍션 됬나요????");
             }
         }
 //        tracker.trackResults(mappedRecognitions, new Random().nextInt());
