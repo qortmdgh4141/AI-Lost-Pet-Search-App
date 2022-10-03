@@ -47,7 +47,7 @@ public class yolo_MainActivity extends AppCompatActivity {
         detectButton = findViewById(R.id.detectButton);
         imageView = findViewById(R.id.imageView);
 
-        String imagePath1 = ((WritePostActivity)WritePostActivity.con).imagePath;
+        //String imagePath1 = ((WritePostActivity)WritePostActivity.con).imagePath;
 
         detectButton.setOnClickListener(v -> {
             Handler handler = new Handler();
@@ -64,9 +64,9 @@ public class yolo_MainActivity extends AppCompatActivity {
 
         });
 
-        //this.sourceBitmap = Utils.getBitmapFromAsset(yolo_MainActivity.this, "b.jpg");
+        this.sourceBitmap = Utils.getBitmapFromAsset(yolo_MainActivity.this, "a.jpg");
 
-        this.sourceBitmap = convert(imagePath1);
+        //this.sourceBitmap = convert(imagePath1);
 
         this.cropBitmap = Utils.processBitmap(sourceBitmap, TF_OD_API_INPUT_SIZE);
 
