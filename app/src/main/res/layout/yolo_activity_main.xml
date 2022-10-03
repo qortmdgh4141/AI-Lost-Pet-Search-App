@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
 
     <Button
         android:id="@+id/detectButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_width="119dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="144dp"
         android:layout_marginBottom="126dp"
-        android:text="Detect"
+        android:background="#1F34AA"
+        android:text="강아지 종류 확인"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -33,7 +35,9 @@
         android:id="@+id/tracking_overlay"
         android:layout_width="416dp"
         android:layout_height="416dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

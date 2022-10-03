@@ -64,7 +64,7 @@ public class yolo_MainActivity extends AppCompatActivity {
 
         });
 
-        this.sourceBitmap = Utils.getBitmapFromAsset(yolo_MainActivity.this, "a.jpg");
+        this.sourceBitmap = Utils.getBitmapFromAsset(yolo_MainActivity.this, "ab.jpg");
 
         //this.sourceBitmap = convert(imagePath1);
 
