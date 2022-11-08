@@ -46,5 +46,4 @@ Based on Computer Vision & GPS, a platform was established to track the location
 #### Deep Learning Model
 <p>
   <img src="https://img.shields.io/badge/YOLO-black?&logo=YOLO&logoColor=00FFFF"/>
-  <img src="https://img.shields.io/badge/SlowFast-6633ff?"/>
 </p>
