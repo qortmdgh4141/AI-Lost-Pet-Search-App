@@ -36,7 +36,7 @@
     1. _Take layers from a previously trained model._
     2. _Freeze them, so as to avoid destroying any of the information they contain during future training rounds._
     3. _Add some new, trainable layers on top of the frozen layers. They will learn to turn the old features into predictions on a new dataset._
-    4. +Train the new layers on your dataset._
+    4. _Train the new layers on your dataset._
   - _A last, optional step, is fine-tuning, which consists of unfreezing the entire model you obtained above (or part of it), and re-training it on the new data with a very low learning rate._ <br/> <br/> 
   
   
