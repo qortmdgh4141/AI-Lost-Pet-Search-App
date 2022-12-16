@@ -19,31 +19,26 @@ Since you suddenly lost your pet, you may be at a loss as to what to do first to
 
 Based on Computer Vision & GPS, a platform was established to track the location of dogs and organize a protection system between individuals, and to solve the problem of increasing abandoned dogs, which is emerging as a social problem. 
 
-#
-
-### 💪 Skills
-#### Platforms & Languages & Tools
+--------------------------
+### 💻 S/W Development Environment
 <p>
-
-  <img src="https://img.shields.io/badge/PyCharm-66FF00?style=flat-square&logo=PyCharm&logoColor=black"/>
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/PyTorch-FF9900?style=flat-square&logo=PyTorch&logoColor=EE4C2C"/>
-  <img src="https://img.shields.io/badge/Numpy-013243?style=flat-square&logo=Numpy&logoColor=blue"/>
+  <img src="https://img.shields.io/badge/Windows 10-0078D6?style=flat-square&logo=Windows&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Android Studio-3DDC84?style=flat-square&logo=Android&logoColor=white"/> 
+  <img src="https://img.shields.io/badge/Firebase-blue?style=flat-square&logo=Firebase&logoColor=FFCA28"/>
 </p>  
 <p>
-  <img src="https://img.shields.io/badge/PHP-222222?style=flat-square&logo=PHP&logoColor=777BB4"/>
-  <img src="https://img.shields.io/badge/MySQL-eeeeee?style=flat-square&logo=MySQL&logoColor=4479A1"/>
-  <img src="https://img.shields.io/badge/Apache-A81C7D?style=flat-square&logo=Apache&logoColor=D22128"/>
-  <img src="https://img.shields.io/badge/Apache Tomcat-999999?style=flat-square&logo=Apache Tomcat&logoColor=F8DC75"/>
+  <img src="https://img.shields.io/badge/PyCharm-66FF00?style=flat-square&logo=PyCharm&logoColor=black"/>
+  <img src="https://img.shields.io/badge/NVIDIA-black?style=flat-square&logo=NVIDIA&logoColor=76B900"/>
+  <img src="https://img.shields.io/badge/Anaconda-e9e9e9?style=flat-square&logo=Anaconda&logoColor=44A833"/>
 </p>
 <p>
-  <img src="https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=Android&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Java-FF0000?style=flat-square&logo=Java&logoColor=white"/>
-  <img src="https://img.shields.io/badge/XML-888888?style=flat-square&logo=Java&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PyTorch-FF9900?style=flat-square&logo=PyTorch&logoColor=EE4C2C"/>
+  <img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=Numpy&logoColor=blue"/>
+  <img src="https://img.shields.io/badge/Java-FF0000?style=flat-square&logo=Java&logoColor=white"/> 
 </p>   
- 
 
-#### Deep Learning Model
+### 🚀 Deep Learning Model
 <p>
   <img src="https://img.shields.io/badge/YOLO-black?&logo=YOLO&logoColor=00FFFF"/>
 </p>
