@@ -1,30 +1,33 @@
 ## 🐕  AI Lost Pet Search App 
-- _The PDF file is a study note for AI Lost Pet Search App._ <br/> <br/> 
+- _The PDF file is a study note for AI Lost Pet Search App._ <br/> <br/> <br/> 
 
 ### 1. &nbsp; Background of Development <br/> 
-- _Recently, the number of dog owners in Korea is increasing. According to statistics from the "Animal Freedom Solidarity," more than 10 million people own dogs. Unfortunately, the number of abandoned animals is also increasing according to this trend.When dog owners lose their dogs, they are very worried about what to do. At this time, the first thing to do is to go to a place where the dog is likely to be and find it. I devised a project to solve these problems more easily._ <br/> <br/> <br/> 
+- _Recently, the number of dog owners in Korea is increasing. According to statistics from the "Animal Freedom Solidarity," more than 10 million people own dogs. Unfortunately, the number of abandoned animals is also increasing according to this trend.When dog owners lose their dogs, they are very worried about what to do. At this time, the first thing to do is to go to a place where the dog is likely to be and find it. I devised a project to solve these problems more easily._ <br/><br/><br/>
 
-### 2. &nbsp; Project Introduction <br/> <br/>
-- _This application is an SNS-type application that helps dog owners easily find their lost dogs._
-- _If a passerby finds an abandoned dog wandering alone on the street, the passerby can post information such as the place and time of discovery along with a picture of the dog._
-- _At this time, users who register posts will be given 500 points._ 
-  - _For users who also take protective measures, 50,000 points will be given._
-- _On the contrary, owners who lose their dogs have to pay 100 points to access the information in the post._ <br/>
-  - _In the case of user posts that are even taking protective measures, they have to pay 5000 points._ <br/>
+### 2. &nbsp; Project Introduction <br/> 
+- _This application is an SNS-type application that helps dog owners easily find their lost dogs._  <br/><br/> 
+  - _If a passerby finds an abandoned dog wandering alone on the street, the passerby can post information such as the place and time of discovery along with a picture of the dog._ <br/>
+    - _It's okay not to have knowledge of dog breeds when writing a post._ <br/>
+    - _This is because the application automatically informs the dog's breed information using the YOLO model._ <br/><br/>
+  - _At this time, users who register posts will be given 500 points._ <br/>
+    - _For users who also take protective measures, 50,000 points will be given._ <br/><br/>
+  - _On the contrary, owners who lose their dogs have to pay 100 points to access the information in the post._ <br/>
+    - _In the case of user posts that are even taking protective measures, they have to pay 5000 points._ <br/><br/>
+- _In addition, the application provides free information on abandoned dog shelters in Gyeonggi-do._ <br/><br/><br/>
  
-&nbsp;&nbsp;&nbsp; _❗️ &nbsp; For your information, it's okay not to have knowledge of dog breeds when writing a post._ <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _This is because the application automatically informs the dog's breed information using the YOLO model._ <br/> <br/> <br/> 
 
 ### 3. &nbsp; Main Function <br/> <br/> 
-- _**Main Registration & Login**_ <br/> <br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/main_registration_login.png?raw=true"  width="640" height="240"> <br/>
+- _**Sign Up & Sign In**_ <br/> <br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/main_registration_login.png?raw=true"  width="640" height="240"> <br/> <br/> <br/>
 
-- _**Registering a post**_ <br/> <br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="1280" height="320"> <br/>
+- _**The process of registering a post**_ <br/> <br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="1280" height="320"> <br/> <br/> <br/>
 
-- _**Registering a post**_ <br/> <br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/>
+- _**Bulletin board of abandoned dog shelter located in Gyeonggi-do**_ <br/> <br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/> <br/> <br/>
 
 
+### 4. &nbsp; Main Function <br/> <br/>
 
 --------------------------
 ### 💻 S/W Development Environment
