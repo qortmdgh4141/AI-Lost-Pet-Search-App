@@ -1,24 +1,20 @@
-# 🐕  AI Lost Pet Search App 
+## 🐕  AI Lost Pet Search App 
+- _The PDF file is a study note for AI Lost Pet Search App._ <br/> <br/> 
 
-Public Data(공공 데이터)
-- AI Hub DataSet : 반려동물 구분을 위한 동물 영상
---> https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=59
-- Gyeonggi Data Dream DataSet : 경기도 내 유기동물 보호 현황
---> https://data.gg.go.kr/portal/data/service/selectServicePage.do?page=1&sortColumn=&sortDirection=&infId=UOKOBXSYKT10BAGIDAXZ28522406&infSeq=1&searchWord=%EC%9C%A0%EA%B8%B0+%EB%8F%99%EB%AC%BC+%EB%B3%B4%ED%98%B8+%ED%98%84%ED%99%A9
+### 1. &nbsp; Background of Development <br/> 
+- _Recently, the number of dog owners in Korea is increasing. According to statistics from the "Animal Freedom Solidarity," more than 10 million people own dogs. Unfortunately, the number of abandoned animals is also increasing according to this trend.When dog owners lose their dogs, they are very worried about what to do. At this time, the first thing to do is to go to a place where the dog is likely to be and find it. I devised a project to solve these problems more easily._ <br/> <br/> <br/> 
 
-⚠️ The project is still in progress... 
+### 2. &nbsp; Project Introduction <br/> <br/>
+- _This application is an SNS-type application that helps dog owners easily find their lost dogs._
+- _If a passerby finds an abandoned dog wandering alone on the street, the passerby can post information such as the place and time of discovery along with a picture of the dog._
+- _At this time, users who register posts will be given 500 points._ 
+  - _For users who also take protective measures, 50,000 points will be given._
+- _On the contrary, owners who lose their dogs have to pay 100 points to access the information in the post._ <br/>
+  - _In the case of user posts that are even taking protective measures, they have to pay 5000 points._ <br/>
+  
+&nbsp;&nbsp; ❗️ _For your information, it's okay not to have knowledge of dog breeds when writing a post._ <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _This is because the application automatically informs the dog's breed information using the YOLO model._
 
-Build a platform to track the location of dogs based on Computer Vision & GPS and organize a system for protecting abandoned dogs between individuals.
-
-#### Motivation for development 👋
-
-In the 21st century, 10 million people live with their pets.
-Owners who regard their pets as family members are anxious about whether they were hit by a car or taken away by their dog owners if they lose their pets.
-
-Since you suddenly lost your pet, you may be at a loss as to what to do first to find your precious pet, but the first thing to do in this case is to go to a place where your pet might be and find it.
-
-Based on Computer Vision & GPS, a platform was established to track the location of dogs and organize a protection system between individuals, and to solve the problem of increasing abandoned dogs, which is emerging as a social problem. 
-
+3. &nbsp; Main Function <br/> <br/> 
 --------------------------
 ### 💻 S/W Development Environment
 <p>
@@ -42,3 +38,9 @@ Based on Computer Vision & GPS, a platform was established to track the location
 <p>
   <img src="https://img.shields.io/badge/YOLO-black?&logo=YOLO&logoColor=00FFFF"/>
 </p>
+
+### 💾 Datasets used in the project
+- _**AI Hub Dataset &nbsp; : &nbsp;** Animal videos to distinguish pets._
+  -  https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=59
+- _**Gyeonggi Data Dream Dataset &nbsp; : &nbsp;** Status of Abandoned Animal Protection._
+  -  https://data.gg.go.kr/portal/data/service/selectServicePage.do?page=1&sortColumn=&sortDirection=&infId=UOKOBXSYKT10BAGIDAXZ28522406&infSeq=1&searchWord=%EC%9C%A0%EA%B8%B0+%EB%8F%99%EB%AC%BC+%EB%B3%B4%ED%98%B8+%ED%98%84%ED%99%A9
