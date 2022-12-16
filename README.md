@@ -21,7 +21,8 @@
 - _**Registering a post**_ <br/> <br/>
 <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="1280" height="320"> <br/>
 
-
+- _**Registering a post**_ <br/> <br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/>
 
 
 
