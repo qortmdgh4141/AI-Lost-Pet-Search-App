@@ -37,31 +37,16 @@
     2. Freeze them, so as to avoid destroying any of the information they contain during future training rounds.
     3. Add some new, trainable layers on top of the frozen layers. They will learn to turn the old features into predictions on a new dataset.
     4. Train the new layers on your dataset.
-  - A last, optional step, is fine-tuning, which consists of unfreezing the entire model you obtained above (or part of it), and re-training it on the new data with a very low learning rate.
+  - A last, optional step, is fine-tuning, which consists of unfreezing the entire model you obtained above (or part of it), and re-training it on the new data with a very low learning rate. <br/> <br/> <br/>
   
   
- - My Fine-Tuning Strategy
-  - Strategy 1: Train the entire model. In this situation, it is possible to use the architecture of the pre-trained model and
-train it according to the dataset. 
-    - It is recommended for large datasets.
-
-  - Train some layers and leave the others frozen. In a CNN architecture, lower layers refer to general features (problem independent), while higher layers refer to specific features (problem dependent). In this case, we have to adjust
-the weights of the network. This option is useful when we have a small dataset and a large number of parameters, we
-need to leave more layers frozen to avoid overfitting. On the other hand, if the dataset is large and the number of parameters is small, it is possible to improve the model by training more layers to the new task.
-
-- Strategy 3: Freeze the convolutional base. In this situation, we have an extreme case of the train/freeze trade-off.
-The rationale behind it is to keep the original form of the
-convolutional base to use as input for the classifier. By this
-way, the pre-trained model plays the role of a feature extractor.
-It can be interesting for small datasets or if the problem solved
-by the pre-trained model is similar to the one we are working
-on.
-
-|Strategy|내용|설명|중앙정렬|
-|:-----:|:-----:|:-----:|:-----:|
-|Strategy 1|오른쪽정렬|중앙정렬|중앙정렬|
-|Strategy 2|오른쪽정렬|중앙정렬|중앙정렬|
-|Strategy 3|오른쪽정렬|중앙정렬|중앙정렬|
+ - My Fine-Tuning Strategy <br/> <br/>
+ 
+|Strategy| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Method |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Feature|
+|:-----------------------:|:-----------------------|:-----------------------|
+|_**Strategy 1**_|_Train the entire model. In this situation, it is possible to use the architecture of the pre-trained model and train it according to the dataset. Train the entire model. In this situation, it is possible to use the architecture of the pre-trained model and train it according to the dataset._|_It is recommended for large datasets._|
+|_**Strategy 2**_|_Train some layers and leave the others frozen. In a CNN architecture, lower layers refer to general features (problem independent), while higher layers refer to specific features (problem dependent). In this case, we have to adjust the weights of the network._|_This option is useful when we have a small dataset and a large number of parameters, we need to leave more layers frozen to avoid overfitting. On the other hand, if the dataset is large and the number of parameters is small, it is possible to improve the model by training more layers to the new task._|
+|_**Strategy 3**_|_Freeze the convolutional base. In this situation, we have an extreme case of the train/freeze trade-off. The rationale behind it is to keep the original form of the convolutional base to use as input for the classifier. By this way, the pre-trained model plays the role of a feature extractor._|_It can be interesting for small datasets or if the problem solved by the pre-trained model is similar to the one we are working on._| 
 
 
 
