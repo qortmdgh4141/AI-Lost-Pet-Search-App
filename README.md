@@ -20,7 +20,7 @@
 <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/main_registration.png?raw=true"  width="1280" height="320"> <br/>
 
 - _**Registering a post**_ <br/> <br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_post.png?raw=true"  width="720" height="220"> <br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="720" height="220"> <br/>
 
 
 
