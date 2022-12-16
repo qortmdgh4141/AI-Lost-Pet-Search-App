@@ -11,10 +11,14 @@
   - _For users who also take protective measures, 50,000 points will be given._
 - _On the contrary, owners who lose their dogs have to pay 100 points to access the information in the post._ <br/>
   - _In the case of user posts that are even taking protective measures, they have to pay 5000 points._ <br/>
-  
-&nbsp;&nbsp; ❗️ _For your information, it's okay not to have knowledge of dog breeds when writing a post._ <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _This is because the application automatically informs the dog's breed information using the YOLO model._
+ 
+&nbsp;&nbsp;&nbsp; _❗️ &nbsp; For your information, it's okay not to have knowledge of dog breeds when writing a post._ <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _This is because the application automatically informs the dog's breed information using the YOLO model._ <br/> <br/> <br/> 
 
-3. &nbsp; Main Function <br/> <br/> 
+
+### 3. &nbsp; Main Function <br/> <br/> 
+- _**Main Registration & Login**_ <br/> 
+
+
 --------------------------
 ### 💻 S/W Development Environment
 <p>
