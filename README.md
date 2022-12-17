@@ -41,9 +41,8 @@
   
   
  - _**My Fine-Tuning Strategy**_ <br/> <br/>
-  
  
- <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/fine_tuning.png?raw=true"  width="640" height="360"> <br/> 
+ <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/transfer_learning_fine_tuning_2.png?raw=true"  width="1320" height="490"> <br/>
    
 |Strategy| &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Method |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Feature|
 |:-----------------------:|:-----------------------|:-----------------------|
