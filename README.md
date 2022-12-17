@@ -86,6 +86,4 @@
 
 ### 💾 Datasets used in the project
 - _**AI Hub Dataset &nbsp; : &nbsp;** Animal videos to distinguish pets._
-  -  https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=59
 - _**Gyeonggi Data Dream Dataset &nbsp; : &nbsp;** Status of Abandoned Animal Protection._
-  -  https://data.gg.go.kr/portal/data/service/selectServicePage.do?page=1&sortColumn=&sortDirection=&infId=UOKOBXSYKT10BAGIDAXZ28522406&infSeq=1&searchWord=%EC%9C%A0%EA%B8%B0+%EB%8F%99%EB%AC%BC+%EB%B3%B4%ED%98%B8+%ED%98%84%ED%99%A9
