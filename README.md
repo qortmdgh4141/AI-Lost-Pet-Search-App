@@ -85,5 +85,6 @@
 </p>
 
 ### 💾 Datasets used in the project
+- _**COCO Dataset**_
 - _**AI Hub Dataset &nbsp; : &nbsp;** Animal videos to distinguish pets._
 - _**Gyeonggi Data Dream Dataset &nbsp; : &nbsp;** Status of Abandoned Animal Protection._
