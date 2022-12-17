@@ -41,7 +41,10 @@
   
   
  - _**My Fine-Tuning Strategy**_ <br/> <br/>
+  
  
+ <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/fine_tuning.png?raw=true"  width="640" height="360"> <br/> 
+   
 |Strategy| &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Method |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Feature|
 |:-----------------------:|:-----------------------|:-----------------------|
 |_**Strategy 1**_|_Train the entire model. In this situation, it is possible to use the architecture of the pre-trained model and train it according to the dataset._|_It is recommended for large datasets._|
@@ -49,6 +52,7 @@
 |_**Strategy 3**_|_Freeze the convolutional base. In this situation, we have an extreme case of the train/freeze trade-off. The rationale behind it is to keep the original form of the convolutional base to use as input for the classifier. By this way, the pre-trained model plays the role of a feature extractor._|_It can be interesting for small datasets or if the problem solved by the pre-trained model is similar to the one we are working on._| 
 
 <br/> 
+
 
  - _**Results Based on 3 Strategies**_ <br/> <br/>
   <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/transfer_learning_fine_tuning.png?raw=true"  width="1280" height="340"> <br/> <br/> 
