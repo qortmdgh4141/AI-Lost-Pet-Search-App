@@ -21,7 +21,7 @@
 <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/main_registration_login.png?raw=true"  width="640" height="240"> <br/> <br/> <br/>
 
 - _**The Process of Registering a Post**_ <br/> <br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="1280" height="320"> <br/> <br/> <br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="1280" height="300"> <br/> <br/> <br/>
 
 - _**Bulletin Board of Abandoned Dog Shelter Located in Gyeonggi-Do**_ <br/> <br/>
 <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/> <br/> <br/>
