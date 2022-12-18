@@ -2,7 +2,7 @@
 - _The PDF file is a development report of AI Lost Pet Search App._ <br/> <br/> <br/> 
 
 ### 1. &nbsp; Background of Development <br/> 
-- _Recently, the number of dog owners in Korea is increasing. According to statistics from the "Animal Freedom Solidarity," more than 10 million people own dogs. Unfortunately, the number of abandoned animals is also increasing according to this trend.When dog owners lose their dogs, they are very worried about what to do. At this time, the first thing to do is to go to a place where the dog is likely to be and find it. I devised a project to solve these problems more easily._ <br/><br/><br/>
+- _Recently, the number of dog owners in Korea is increasing. According to statistics from the "Animal Freedom Solidarity," more than 10 million people own dogs. Unfortunately, the number of abandoned animals is also increasing according to this trend.When dog owners lose their dogs, they are very worried about what to do. At this time, the first thing to do is to go to a place where the dog is likely to be and find it. To solve these problems more easily, I devised "AI Lost Pet Search App"._ <br/><br/><br/>
 
 ### 2. &nbsp; Project Introduction <br/> 
 - _This application is an SNS-type application that helps dog owners easily find their lost dogs._  <br/><br/> 
