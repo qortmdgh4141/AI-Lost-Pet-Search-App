@@ -1,10 +1,10 @@
-## 🐕  AI Lost Pet Search App 
-- _The PDF file is a development report of AI Lost Pet Search App._ <br/> <br/> <br/> 
+# 🐕  AI Lost Pet Search App 
+<br/> 
 
-### 1. &nbsp; Background of Development <br/> 
+### 1. &nbsp; Background of Development <br/><br/>  
 - _Recently, the number of dog owners in Korea is increasing. According to statistics from the "Animal Freedom Solidarity," more than 10 million people own dogs. Unfortunately, the number of abandoned animals is also increasing according to this trend.When dog owners lose their dogs, they are very worried about what to do. At this time, the first thing to do is to go to a place where the dog is likely to be and find it. To solve these problems more easily, I devised "AI Lost Pet Search App"._ <br/><br/><br/>
 
-### 2. &nbsp; Project Introduction <br/> 
+### 2. &nbsp; Project Introduction <br/><br/>  
 - _This application is an SNS-type application that helps dog owners easily find their lost dogs._  <br/><br/> 
   - _If a passerby finds an abandoned dog wandering alone on the street, the passerby can post information such as the place and time of discovery along with a picture of the dog._ <br/>
     - _It's okay not to have knowledge of dog breeds when writing a post._ <br/>
@@ -15,17 +15,15 @@
     - _In the case of user posts that are even taking protective measures, they have to pay 5000 points._ <br/><br/>
 - _In addition, the application provides free information on abandoned dog shelters in Gyeonggi-do._ <br/><br/><br/>
  
-
-### 3. &nbsp; Main Function <br/> <br/> 
-- _**Sign Up & Sign In**_ <br/> <br/>
+### 3. &nbsp; Main Function <br/><br/> 
+- _**Sign Up & Sign In**_ <br/><br/>
 <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/main_registration_login.png?raw=true"  width="640" height="240"> <br/> <br/> <br/>
 
-- _**The Process of Registering a Post**_ <br/> <br/>
+- _**The Process of Registering a Post**_ <br/><br/>
 <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="1280" height="300"> <br/> <br/> <br/>
 
-- _**Bulletin Board of Abandoned Dog Shelter Located in Gyeonggi-Do**_ <br/> <br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/> <br/> <br/>
-
+- _**Bulletin Board of Abandoned Dog Shelter Located in Gyeonggi-Do**_ <br/><br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/><br/><br/>
 
 ### 4. &nbsp; YOLO Model Training Strategies Using Transfer-Learning & Fine-Tuning <br/> <br/>
 
