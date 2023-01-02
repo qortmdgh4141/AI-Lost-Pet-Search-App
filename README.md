@@ -34,21 +34,20 @@
 <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/><br/>
   -  _Users can check information about abandoned dog shelters in Gyeonggi-do for free._ <br/><br/><br/>
 
-### 4. &nbsp; YOLO Model Training Strategies Using Transfer-Learning & Fine-Tuning <br/> <br/>
+### 4. &nbsp; YOLO Model Training Strategies Using Transfer-Learning & Fine-Tuning <br/><br/>
 
-- _**Transfer-Learning & Fine-Tuning Definition**_
-  - _Transfer learning consists of taking features learned on one problem, and leveraging them on a new, similar problem._
-  - _Transfer learning is usually done for tasks where your dataset has too little data to train a full-scale model from scratch._
-  - _The most common incarnation of transfer learning in the context of deep learning is the following workflow._
-    1. _Take layers from a previously trained model._
-    2. _Freeze them, so as to avoid destroying any of the information they contain during future training rounds._
-    3. _Add some new, trainable layers on top of the frozen layers. They will learn to turn the old features into predictions on a new dataset._
-    4. _Train the new layers on your dataset._
-  - _A last, optional step, is fine-tuning, which consists of unfreezing the entire model you obtained above (or part of it), and re-training it on the new data with a very low learning rate._ <br/> <br/> 
-  
+- _**Transfer-Learning & Fine-Tuning Definition**_ <br/>
+
+  - _Transfer learning consists of taking features learned on one problem, and leveraging them on a new, similar problem._ <br/>
+  - _Transfer learning is usually done for tasks where your dataset has too little data to train a full-scale model from scratch._ <br/>
+  - _The most common incarnation of transfer learning in the context of deep learning is the following workflow._ <br/>
+    1. _Take layers from a previously trained model._ <br/>
+    2. _Freeze them, so as to avoid destroying any of the information they contain during future training rounds._ <br/>
+    3. _Add some new, trainable layers on top of the frozen layers. They will learn to turn the old features into predictions on a new dataset._ <br/>
+    4. _Train the new layers on your dataset._ <br/>
+  - _A last, optional step, is fine-tuning, which consists of unfreezing the entire model you obtained above (or part of it), and re-training it on the new data with a very low learning rate._ <br/><br/><br/> 
   
  - _**My Fine-Tuning Strategy**_ <br/> <br/>
- 
  <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/transfer_learning_fine_tuning_2.png?raw=true"  width="1320" height="490"> <br/>
    
 |Strategy|Method |Feature|
@@ -57,14 +56,14 @@
 |_**Strategy 2**_|_Train some layers and leave the others frozen. In a CNN architecture, lower layers refer to general features (problem independent), while higher layers refer to specific features (problem dependent). In this case, we have to adjust the weights of the network._|_This option is useful when we have a small dataset and a large number of parameters, we need to leave more layers frozen to avoid overfitting. On the other hand, if the dataset is large and the number of parameters is small, it is possible to improve the model by training more layers to the new task._|
 |_**Strategy 3**_|_Freeze the convolutional base. In this situation, we have an extreme case of the train/freeze trade-off. The rationale behind it is to keep the original form of the convolutional base to use as input for the classifier. By this way, the pre-trained model plays the role of a feature extractor._|_It can be interesting for small datasets or if the problem solved by the pre-trained model is similar to the one we are working on._| 
 
-<br/> 
+<br/><br/> 
 
 
  - _**Results Based on 3 Strategies**_ <br/> <br/>
   <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/transfer_learning_fine_tuning.png?raw=true"  width="1280" height="340"> <br/> <br/> 
     - _**Strategy 1** &nbsp; : &nbsp; Yellow, &nbsp;&nbsp;&nbsp;&nbsp; **Strategy 2 &nbsp; :** &nbsp; Pink, &nbsp;&nbsp;&nbsp;&nbsp; **Strategy 3 &nbsp; :** &nbsp; Purple_  <br/> 
-    - _Strategy 1 shows the best results._
-    - _I think the reasons for this result are as follows._
+    - _Strategy 1 shows the best results._ <br/>
+    - _I think the reasons for this result are as follows._ <br/>
     - _The dataset I used is a large dataset and has little resemblance to the dataset of pre-trained models_ <br/> <br/> <br/>
 
 --------------------------
