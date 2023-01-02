@@ -25,7 +25,7 @@
     - _This is because the application automatically informs the dog's breed information using the YOLO model._ <br/><br/>
     
   - _At this time, users who register the bulletin board will be given 500 points._ <br/>
-    - _For users who also take protective measures, 50,000 points will be given._ <br/>
+    - _For users who also take protective measures, 50,000 points will be given._ <br/><br/>
     
   - _On the contrary, owners who lose their dogs have to pay 100 points to access the information in the bulletin board._ <br/>
     - _In the case of user bulletin boards that are even taking protective measures, they have to pay 5000 points._ <br/><br/><br/>
