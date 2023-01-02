@@ -5,25 +5,34 @@
 - _Recently, the number of dog owners in Korea is increasing. According to statistics from the "Animal Freedom Solidarity," more than 10 million people own dogs. Unfortunately, the number of abandoned animals is also increasing according to this trend.When dog owners lose their dogs, they are very worried about what to do. At this time, the first thing to do is to go to a place where the dog is likely to be and find it. To solve these problems more easily, I devised "AI Lost Pet Search App"._ <br/><br/><br/>
 
 ### 2. &nbsp; Project Introduction <br/><br/>  
-- _This application is an SNS-type application that helps dog owners easily find their lost dogs._  <br/><br/> 
-  - _If a passerby finds an abandoned dog wandering alone on the street, the passerby can post information such as the place and time of discovery along with a picture of the dog._ <br/>
-    - _It's okay not to have knowledge of dog breeds when writing a post._ <br/>
-    - _This is because the application automatically informs the dog's breed information using the YOLO model._ <br/><br/>
-  - _At this time, users who register posts will be given 500 points._ <br/>
-    - _For users who also take protective measures, 50,000 points will be given._ <br/><br/>
-  - _On the contrary, owners who lose their dogs have to pay 100 points to access the information in the post._ <br/>
-    - _In the case of user posts that are even taking protective measures, they have to pay 5000 points._ <br/><br/>
+- _This application is an SNS-type application that helps dog owners easily find their lost dogs._  <br/>
+ 
 - _In addition, the application provides free information on abandoned dog shelters in Gyeonggi-do._ <br/><br/><br/>
  
 ### 3. &nbsp; Main Function <br/><br/> 
 - _**Sign Up & Sign In**_ <br/><br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/main_registration_login.png?raw=true"  width="640" height="240"> <br/> <br/> <br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/main_registration_login.png?raw=true"  width="640" height="240"> <br/><br/>
+  - _You must sign up for membership to use the application._ <br/>
+    - _If you enter your ID and password in email format, your membership will be completed._ <br/>
+    - _If you have already signed up, you can skip the above procedure and log in._ <br/><br/>
+    
+  - _Users who have completed their membership can register information such as their profile picture, name, contact number, date of birth, address, etc._ <br/> <br/> <br/>
 
-- _**The Process of Registering a Post**_ <br/><br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="1280" height="300"> <br/> <br/> <br/>
-
+- _**Registering a Bulletin Board**_ <br/><br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="1280" height="300"> <br/><br/> 
+  - _If a passerby finds an abandoned dog wandering alone on the street, the passerby can register information such as the place and time of discovery along with a picture of the dog._ <br/>
+    - _It's okay not to have knowledge of dog breeds when writing a bulletin board._ <br/>
+    - _This is because the application automatically informs the dog's breed information using the YOLO model._ <br/><br/>
+    
+  - _At this time, users who register the bulletin board will be given 500 points._ <br/>
+    - _For users who also take protective measures, 50,000 points will be given._ <br/>
+    
+  - _On the contrary, owners who lose their dogs have to pay 100 points to access the information in the bulletin board._ <br/>
+    - _In the case of user bulletin boards that are even taking protective measures, they have to pay 5000 points._ <br/><br/><br/>
+    
 - _**Bulletin Board of Abandoned Dog Shelter Located in Gyeonggi-Do**_ <br/><br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/><br/><br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/><br/>
+  -  _This application provides free information on abandoned dog shelters in Gyeonggi-do._ <br/><br/><br/>
 
 ### 4. &nbsp; YOLO Model Training Strategies Using Transfer-Learning & Fine-Tuning <br/> <br/>
 
