@@ -32,7 +32,7 @@
     
 - _**Bulletin Board of Abandoned Dog Shelter Located in Gyeonggi-Do**_ <br/><br/>
 <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/><br/>
-  -  _This application provides free information on abandoned dog shelters in Gyeonggi-do._ <br/><br/><br/>
+  -  _Users can check information about abandoned dog shelters in Gyeonggi-do for free._ <br/><br/><br/>
 
 ### 4. &nbsp; YOLO Model Training Strategies Using Transfer-Learning & Fine-Tuning <br/> <br/>
 
