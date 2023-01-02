@@ -11,7 +11,7 @@
  
 ### 3. &nbsp; Main Function <br/><br/> 
 - _**Sign Up & Sign In**_ <br/><br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/main_registration_login.png?raw=true"  width="640" height="240"> <br/><br/>
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/main_registration_login.png?raw=true"  width="640" height="240"> <br/>
   - _You must sign up for membership to use the application._ <br/>
     - _If you enter your ID and password in email format, your membership will be completed._ <br/>
     - _If you have already signed up, you can skip the above procedure and log in._ <br/><br/>
@@ -19,7 +19,7 @@
   - _Users who have completed their membership can register information such as their profile picture, name, contact number, date of birth, address, etc._ <br/> <br/> <br/>
 
 - _**Registering a Bulletin Board**_ <br/><br/>
-<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="1280" height="300"> <br/><br/> 
+<img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/registering_a_post.png?raw=true"  width="1280" height="300"> <br/>
   - _If a passerby finds an abandoned dog wandering alone on the street, the passerby can register information such as the place and time of discovery along with a picture of the dog._ <br/>
     - _It's okay not to have knowledge of dog breeds when writing a bulletin board._ <br/>
     - _This is because the application automatically informs the dog's breed information using the YOLO model._ <br/><br/>
@@ -30,7 +30,7 @@
   - _On the contrary, owners who lose their dogs have to pay 100 points to access the information in the bulletin board._ <br/>
     - _In the case of user bulletin boards that are even taking protective measures, they have to pay 5000 points._ <br/><br/><br/>
     
-- _**Bulletin Board of Abandoned Dog Shelter Located in Gyeonggi-Do**_ <br/><br/>
+- _**Bulletin Board of Abandoned Dog Shelter Located in Gyeonggi-Do**_ <br/>
 <img src="https://github.com/qortmdgh4141/AI_Lost_Pet_Search_App/blob/main/image/the_bulletin_board_of_the_abandoned_dog_shelter.png?raw=true"  width="960" height="380"> <br/><br/>
   -  _Users can check information about abandoned dog shelters in Gyeonggi-do for free._ <br/><br/><br/>
 
