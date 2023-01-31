@@ -87,7 +87,7 @@
 
 ### 🚀 Deep Learning Model
 <p>
-  <img src="https://img.shields.io/badge/YOLO-black?&logo=YOLO&logoColor=00FFFF"/>
+  <img src="https://img.shields.io/badge/YOLO-0000FF?"/>
 </p>
 
 ### 💾 Datasets used in the project
