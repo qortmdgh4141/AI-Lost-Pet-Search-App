@@ -1,4 +1,4 @@
-# 🐕   AI Lost Pet Search App   
+# 🐕   AI Lost Pet Search App    
 <br/> 
 
 ### 1. &nbsp; Background of Development <br/><br/>  
